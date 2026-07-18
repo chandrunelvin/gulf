@@ -278,19 +278,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-radial"></div>
-        <div className="hero-text">
-          <div className="hero-eyebrow">EST. MUSCAT · MMXXVI — 5 COLLECTIONS</div>
-          <div className="hero-h">Furniture for</div>
-          <div className="hero-h">Every space</div>
-          <div className="hero-h gold">furnished.</div>
-          <div className="hero-sub">Gulf Supply &amp; Services Trading — Muscat, Oman.<br />Design to Deliver with Style.</div>
-          <div className="scroll-ind"></div>
-        </div>
-      </section>
-
       {/* CANVAS SCROLL */}
       <div id="scrollContainer">
         <div id="stickyWrap">
@@ -306,7 +293,7 @@ export default function Home() {
             <div className="sweep" id="z_entrance"></div>
 
             <div className="ov ov-left" id="z_brunonic">
-              <div className="ov-card">
+              <div className="ov-card" style={{ display: 'none' }}>
                 <div className="kicker">01 / 05</div>
                 <div className="zone-tag">ZONE 01 — BRUNONIC</div>
                 <div>
