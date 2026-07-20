@@ -1,5 +1,6 @@
 import SiteLayout from './SiteLayout.jsx'
 import CollectionGallery from './CollectionGallery.jsx'
+import TabbedCollection from './TabbedCollection.jsx'
 import ProjectSlider from './ProjectSlider.jsx'
 
 /**
@@ -9,10 +10,12 @@ import ProjectSlider from './ProjectSlider.jsx'
  *  - hero: { bg, logo?, title, subtitle }
  *  - detail: { title, paragraphs: string[], media: ReactNode }
  *  - galleryTitle, galleryItems
+ *  - galleryCategories: [{ id, label }] — when given, renders category tabs
+ *    and each gallery item is filtered by its `category` field
  *  - projects: { title?, items: [{ src, alt, title, location }] }
  *  - brochure: ReactNode rendered inside `.brochure-section > .container`
  */
-export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, projects, brochure }) {
+export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, galleryCategories, projects, brochure }) {
   return (
     <SiteLayout active="partners">
       <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')` }}>
@@ -38,7 +41,11 @@ export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, 
       <section className="product-gallery">
         <div className="container">
           <h2 className="section-title">{galleryTitle}</h2>
-          <CollectionGallery items={galleryItems} />
+          {galleryCategories ? (
+            <TabbedCollection categories={galleryCategories} items={galleryItems} />
+          ) : (
+            <CollectionGallery items={galleryItems} />
+          )}
         </div>
       </section>
 

@@ -1,10 +1,5 @@
 import PartnerPage from '../components/PartnerPage.jsx'
-
-const gallery = [
-  { src: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?auto=format&fit=crop&w=500&q=80', alt: 'Scab Slide 1', caption: 'Outdoor Seating' },
-  { src: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=500&q=80', alt: 'Scab Slide 2', caption: 'Contract Furniture' },
-  { src: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=500&q=80', alt: 'Scab Slide 3', caption: 'Bar Stools & Tables' },
-]
+import { scabCategories, scabProducts } from '../data/scabProducts.js'
 
 const projects = [
   { src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=80', title: 'Boutique Hotel Lounge', location: 'Muscat, Oman', desc: 'Italian-designed armchairs and coffee tables furnishing an intimate lobby lounge with warm, contemporary character.' },
@@ -30,7 +25,8 @@ export default function Scab() {
         media: <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80" alt="Scab Seating" />,
       }}
       galleryTitle="SCAB COLLECTION"
-      galleryItems={gallery}
+      galleryItems={scabProducts}
+      galleryCategories={scabCategories}
       projects={{ title: 'SCAB PROJECTS', items: projects }}
       brochure={
         <div className="brochure-card">

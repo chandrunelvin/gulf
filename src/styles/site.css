@@ -340,6 +340,48 @@ section {
     padding: 110px 0;
 }
 
+.collection-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.collection-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: none;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+
+.collection-tab:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.collection-tab.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+}
+
+.collection-tab-count {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.75;
+}
+
 .blog-page {
     background:
         radial-gradient(circle at top right, rgba(21, 155, 148, 0.07), transparent 28%),

@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom'
 import PartnerPage from '../components/PartnerPage.jsx'
-
-const gallery = [
-  { src: 'https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=500&q=80', alt: 'Nitrocare Hospital Beds', caption: 'Hospital Beds' },
-  { src: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=500&q=80', alt: 'Nitrocare Patient Recliners', caption: 'Patient Recliners' },
-  { src: 'https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0?auto=format&fit=crop&w=500&q=80', alt: 'Nitrocare Examination Tables', caption: 'Examination Tables' },
-]
+import { nitrocareProducts } from '../data/nitrocareProducts.js'
 
 const projects = [
   { src: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1400&q=80', title: 'Private Hospital Wards', location: 'Muscat, Oman', desc: 'Electric-positioning hospital beds and overbed tables outfitted across two in-patient wards to medical-grade standards.' },
@@ -30,7 +25,7 @@ export default function Nitrocare() {
         media: <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80" alt="Nitrocare Medical Furniture" />,
       }}
       galleryTitle="NITROCARE COLLECTION"
-      galleryItems={gallery}
+      galleryItems={nitrocareProducts}
       projects={{ title: 'NITROCARE PROJECTS', items: projects }}
       brochure={
         <div className="brochure-card">
