@@ -11,6 +11,7 @@ import Scab from './pages/Scab.jsx'
 import Leadcom from './pages/Leadcom.jsx'
 import Brunonic from './pages/Brunonic.jsx'
 import Nitrocare from './pages/Nitrocare.jsx'
+import Blog from './pages/Blog.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/leadcom" element={<Leadcom />} />
         <Route path="/brunonic" element={<Brunonic />} />
         <Route path="/nitrocare" element={<Nitrocare />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </>

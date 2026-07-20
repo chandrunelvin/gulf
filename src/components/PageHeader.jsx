@@ -42,13 +42,15 @@ export default function PageHeader({ active }) {
               <li><Link to="/scab" onClick={closeNav}>Scab</Link></li>
               <li><Link to="/leadcom" onClick={closeNav}>Leadcom</Link></li>
               <li><Link to="/brunonic" onClick={closeNav}>Brunonic</Link></li>
+              <li><Link to="/nitrocare" onClick={closeNav}>Nitrocare</Link></li>
             </ul>
           </li>
           <li><Link to="/about" className={active === 'about' ? 'active' : ''} onClick={closeNav}>About Us</Link></li>
           <li><Link to="/collection" className={active === 'collection' ? 'active' : ''} onClick={closeNav}>Collection</Link></li>
+          <li><Link to="/blog" className={active === 'blog' ? 'active' : ''} onClick={closeNav}>Blog</Link></li>
           <li><Link to="/contact" className={active === 'contact' ? 'active' : ''} onClick={closeNav}>Contact</Link></li>
         </ul>
-        <Link to="/" className="nav-cta">Explore Collection ↓</Link>
+        <Link to="/contact" className="nav-cta">Get a Quote →</Link>
         <div
           className={`burger${navOpen ? ' toggle' : ''}`}
           role="button"

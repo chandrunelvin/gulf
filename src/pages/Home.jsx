@@ -250,13 +250,15 @@ export default function Home() {
               <li><Link to="/scab" onClick={closeNav}>Scab</Link></li>
               <li><Link to="/leadcom" onClick={closeNav}>Leadcom</Link></li>
               <li><Link to="/brunonic" onClick={closeNav}>Brunonic</Link></li>
+              <li><Link to="/nitrocare" onClick={closeNav}>Nitrocare</Link></li>
             </ul>
           </li>
           <li><Link to="/about" onClick={closeNav}>About Us</Link></li>
           <li><Link to="/collection" onClick={closeNav}>Collection</Link></li>
+          <li><Link to="/blog" onClick={closeNav}>Blog</Link></li>
           <li><Link to="/contact" onClick={closeNav}>Contact</Link></li>
         </ul>
-        <button className="nav-cta" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>Explore Collection ↓</button>
+        <Link to="/contact" className="nav-cta">Get a Quote →</Link>
         <div
           className={`burger${navOpen ? ' toggle' : ''}`}
           id="navBurger"

@@ -17,6 +17,12 @@ const docs = [
   { title: 'Retractable Seating', initials: 'RS', file: '/images/pdf/leedcom/Retractable.pdf' },
 ]
 
+const projects = [
+  { src: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1400&q=80', title: 'Multiplex Cinema Complex', location: 'Muscat, Oman', desc: 'Premium recliners and rocker seating across eight screens, fitted with cup holders and aisle lighting for full-house comfort.' },
+  { src: 'https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&w=1400&q=80', title: 'National Stadium Seating', location: 'Riyadh, KSA', desc: 'High-capacity telescopic and fixed arena seating engineered for safety, weatherproofing and rapid egress.' },
+  { src: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1400&q=80', title: 'International Airport Waiting Areas', location: 'Doha, Qatar', desc: 'Beam-mounted waiting area systems with integrated power, installed across departure lounges and gate holds.' },
+]
+
 export default function Leadcom() {
   return (
     <PartnerPage
@@ -35,6 +41,7 @@ export default function Leadcom() {
       }}
       galleryTitle="LEADCOM COLLECTION"
       galleryItems={gallery}
+      projects={{ title: 'LEADCOM PROJECTS', items: projects }}
       brochure={
         <>
           <div className="brochure-card">

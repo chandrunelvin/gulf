@@ -1,5 +1,6 @@
 import SiteLayout from './SiteLayout.jsx'
 import CollectionGallery from './CollectionGallery.jsx'
+import ProjectSlider from './ProjectSlider.jsx'
 
 /**
  * Shared scaffold for a partner brand detail page (Audia, Scab, Leadcom, etc.).
@@ -8,9 +9,10 @@ import CollectionGallery from './CollectionGallery.jsx'
  *  - hero: { bg, logo?, title, subtitle }
  *  - detail: { title, paragraphs: string[], media: ReactNode }
  *  - galleryTitle, galleryItems
+ *  - projects: { title?, items: [{ src, alt, title, location }] }
  *  - brochure: ReactNode rendered inside `.brochure-section > .container`
  */
-export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, brochure }) {
+export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, projects, brochure }) {
   return (
     <SiteLayout active="partners">
       <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')` }}>
@@ -39,6 +41,18 @@ export default function PartnerPage({ hero, detail, galleryTitle, galleryItems, 
           <CollectionGallery items={galleryItems} />
         </div>
       </section>
+
+      {projects && projects.items?.length > 0 && (
+        <section className="projects-section">
+          <div className="container">
+            <div className="projects-head">
+              <div className="projects-eyebrow">SELECTED WORK — ACROSS THE GULF</div>
+              <h2 className="section-title">{projects.title || 'PROJECTS'}</h2>
+            </div>
+            <ProjectSlider items={projects.items} />
+          </div>
+        </section>
+      )}
 
       <section className="brochure-section">
         <div className="container">{brochure}</div>
