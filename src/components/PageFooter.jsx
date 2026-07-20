@@ -35,7 +35,7 @@ export default function PageFooter() {
           </div>
           <div className="footer-col">
             <h4>Contact Info</h4>
-            <p><i className="fas fa-map-marker-alt" style={{ color: 'var(--accent-color)', marginRight: '10px' }}></i> Muscat, Oman</p>
+            <p><i className="fas fa-map-marker-alt" style={{ color: 'var(--accent-color)', marginRight: '10px' }}></i> Muscat<br />Sultanate of Oman<br />PC 112, PO Box 543</p>
             <p><i className="fas fa-phone" style={{ color: 'var(--accent-color)', marginRight: '10px' }}></i> +968 9710 0007 / +968 9806 7601</p>
             <p><i className="fas fa-envelope" style={{ color: 'var(--accent-color)', marginRight: '10px' }}></i> sales@gstconcepts.om</p>
           </div>

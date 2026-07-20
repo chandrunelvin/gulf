@@ -23,7 +23,7 @@ export default function Contact() {
                 <i className="fas fa-map-marker-alt"></i>
                 <div>
                   <h4>Visit Our Office</h4>
-                  <p>Muscat, Oman</p>
+                  <p>Muscat<br />Sultanate of Oman<br />PC 112, PO Box 543</p>
                 </div>
               </div>
               <div className="info-item">
@@ -66,8 +66,8 @@ export default function Contact() {
         <div className="container">
           <div className="map-container">
             <iframe
-              title="Muscat, Oman map"
-              src="https://maps.google.com/maps?q=Muscat%2C%20Oman&z=11&output=embed"
+              title="Muscat, Sultanate of Oman, PC 112, PO Box 543 map"
+              src="https://maps.google.com/maps?q=Muscat%2C%20Sultanate%20of%20Oman%2C%20PC%20112%2C%20PO%20Box%20543&z=15&output=embed"
               width="100%"
               height="450"
               style={{ border: 0 }}

@@ -367,7 +367,7 @@ export default function Home() {
                 <div className="contact-icon"><i className="fas fa-map-marker-alt"></i></div>
                 <div>
                   <div className="contact-item-l">Office</div>
-                  <div className="contact-item-v">Muscat, Oman</div>
+                  <div className="contact-item-v">Muscat<br />Sultanate of Oman<br />PC 112, PO Box 543</div>
                 </div>
               </div>
               <div className="contact-item">
@@ -467,7 +467,7 @@ export default function Home() {
             <h4>Contact Info</h4>
             <div className="footer-contact-item">
               <i className="fas fa-map-marker-alt"></i>
-              <p>Muscat, Sultanate of Oman</p>
+              <p>Muscat<br />Sultanate of Oman<br />PC 112, PO Box 543</p>
             </div>
             <div className="footer-contact-item">
               <i className="fas fa-phone"></i>
