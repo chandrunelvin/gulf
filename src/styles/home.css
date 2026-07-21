@@ -368,26 +368,58 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .trust-text{font-family:var(--sans);font-size:12.5px;font-weight:300;color:rgba(26,26,26,0.68);line-height:1.6;text-align:left;}
 
 /* ───────────────────────────── HOME FAQ / WHY / SEO CTA ───────────────────────────── */
-.home-faq-section{background:var(--cream-2);padding:110px 5%;}
-.home-faq-wrap{max-width:900px;margin:0 auto;}
-.home-faq-item{padding:44px 0;border-bottom:1px solid rgba(21,155,148,0.15);}
-.home-faq-item:first-child{padding-top:0;}
-.home-faq-item:last-child{border-bottom:none;padding-bottom:0;}
-.home-faq-q{font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:400;color:var(--dark);line-height:1.25;margin-bottom:16px;}
-.home-faq-a{font-family:var(--sans);font-size:14px;font-weight:300;color:rgba(26,26,26,0.65);line-height:1.9;}
+.home-faq-section{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:var(--dark);padding:120px 5%;
+}
+.home-faq-pattern{
+  position:absolute;inset:-2px;z-index:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(21,155,148,0.28) 1.4px, transparent 1.5px);
+  background-size:34px 34px;
+  animation:faqPatternDrift 26s linear infinite;
+  opacity:0.55;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 78%);
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 30%, #000 0%, transparent 78%);
+}
+@keyframes faqPatternDrift{
+  0%{background-position:0 0;}
+  100%{background-position:340px 170px;}
+}
+
+.home-faq-wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;}
+.home-faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);}
+.home-faq-card{
+  background:#141414;padding:44px 40px;position:relative;
+  transition:background .35s ease,transform .35s ease;
+}
+.home-faq-card:hover{background:#191919;transform:translateY(-3px);}
+.home-faq-num{
+  font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:2px;
+  color:var(--gold-lt);margin-bottom:18px;
+}
+.home-faq-q{font-family:var(--serif);font-size:clamp(20px,2vw,25px);font-weight:400;color:#fff;line-height:1.28;margin-bottom:16px;}
+.home-faq-a{font-family:var(--sans);font-size:13.5px;font-weight:300;color:rgba(255,255,255,0.58);line-height:1.85;}
 .home-faq-a + .home-faq-a{margin-top:12px;}
-.home-faq-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px 24px;}
-.home-faq-links a{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:1px;color:var(--gold);border-bottom:1px solid rgba(21,155,148,0.28);padding-bottom:2px;}
-.home-faq-links a:hover{color:var(--dark);border-color:var(--dark);}
+.home-faq-links{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;}
+.home-faq-link-pill{
+  font-family:var(--sans);font-size:10.5px;font-weight:500;letter-spacing:0.8px;color:var(--gold-lt);
+  border:1px solid rgba(21,155,148,0.35);border-radius:100px;padding:8px 16px;
+  transition:all .3s ease;
+}
+.home-faq-link-pill:hover{background:var(--gold);border-color:var(--gold);color:#fff;}
 
-.home-why-head{max-width:900px;margin:0 auto;text-align:left;}
-.home-why{max-width:900px;margin:32px auto 0;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
-.home-why-card{background:var(--cream);border:1px solid rgba(21,155,148,0.15);padding:30px 28px;}
-.home-why-card h4{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--dark);margin-bottom:10px;}
-.home-why-card p{font-family:var(--sans);font-size:13px;font-weight:300;color:rgba(26,26,26,0.6);line-height:1.8;}
+.home-why-card-outer{
+  margin-top:60px;background:#141414;border:1px solid rgba(255,255,255,0.08);padding:48px 44px;
+}
+.home-why-card-outer .home-faq-q{margin-bottom:0;}
+.home-why{margin:32px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.home-why-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-top:2px solid var(--gold-lt);padding:30px 28px;}
+.home-why-card h4{font-family:var(--serif);font-size:19px;font-weight:600;color:#fff;margin-bottom:10px;}
+.home-why-card p{font-family:var(--sans);font-size:13px;font-weight:300;color:rgba(255,255,255,0.55);line-height:1.8;}
 
-.home-seo-cta{text-align:center;margin-top:56px;}
-.home-seo-cta-lead{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--dark);margin-bottom:20px;}
+.home-seo-cta{text-align:center;margin-top:60px;}
+.home-seo-cta-lead{font-family:var(--serif);font-style:italic;font-size:20px;color:#fff;margin-bottom:22px;}
 .home-seo-cta-btn{
   display:inline-flex;align-items:center;gap:10px;padding:17px 38px;background:var(--gold);color:#fff;
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
@@ -786,10 +818,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   .intro-seo{padding:80px 6% 64px;}
   .trust-bar{grid-template-columns:1fr;}
   .home-faq-section{padding:80px 6%;}
+  .home-faq-grid{grid-template-columns:1fr;}
   .home-why{grid-template-columns:1fr;}
+  .home-why-card-outer{padding:36px 28px;}
 }
 
 @media (max-width:480px){
+  .home-faq-card{padding:32px 24px;}
   .nav{padding:0 14px;height:60px;}
   .logo-img{height:42px;}
   .hero-text{width:94%;bottom:36px;}

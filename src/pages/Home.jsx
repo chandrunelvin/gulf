@@ -445,26 +445,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* SEO INTRO / H1 / TRUST BAR */}
-      <section className="intro-seo">
-        <div className="intro-seo-wrap">
-          <div className="intro-eyebrow">MUSCAT, SULTANATE OF OMAN</div>
-          <h1 className="intro-h1">GST Concepts — Commercial Furniture Supplier for Oman, Muscat</h1>
-          <div className="intro-sep"></div>
-          <p className="intro-body">
-            GST Concepts, located in Muscat, offers office furniture, auditorium and cinema seating, hospital and healthcare furniture, and Italian contract brands for commercial and institutional projects throughout the Sultanate. Unlike single-brand retail showrooms, GST Concepts sources across five authorized brands — Audia Italia, Scab, Leadcom, Brunonic and Nitrocare.
-          </p>
-          <div className="trust-bar">
-            {trustBar.map((t) => (
-              <div className="trust-item" key={t.text}>
-                <span className="trust-icon"><i className={`fas ${t.icon}`}></i></span>
-                <span className="trust-text">{t.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* BRAND GRID */}
       <section className="collection">
         <div className="coll-head">
@@ -489,24 +469,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SEO INTRO / H1 / TRUST BAR */}
+      <section className="intro-seo">
+        <div className="intro-seo-wrap">
+          <div className="intro-eyebrow">MUSCAT, SULTANATE OF OMAN</div>
+          <h1 className="intro-h1">GST Concepts — Commercial Furniture Supplier for Oman, Muscat</h1>
+          <div className="intro-sep"></div>
+          <p className="intro-body">
+            GST Concepts, located in Muscat, offers office furniture, auditorium and cinema seating, hospital and healthcare furniture, and Italian contract brands for commercial and institutional projects throughout the Sultanate. Unlike single-brand retail showrooms, GST Concepts sources across five authorized brands — Audia Italia, Scab, Leadcom, Brunonic and Nitrocare.
+          </p>
+          <div className="trust-bar">
+            {trustBar.map((t) => (
+              <div className="trust-item" key={t.text}>
+                <span className="trust-icon"><i className={`fas ${t.icon}`}></i></span>
+                <span className="trust-text">{t.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* HOME FAQ — CATEGORY SUPPLIER Q&A */}
       <section className="home-faq-section">
+        <div className="home-faq-pattern" aria-hidden="true"></div>
         <div className="home-faq-wrap">
-          {homeFaqs.map((item) => (
-            <div className="home-faq-item" key={item.question}>
-              <h2 className="home-faq-q">{item.question}</h2>
-              {item.answers.map((a) => (
-                <p className="home-faq-a" key={a}>{a}</p>
-              ))}
-              <div className="home-faq-links">
-                {item.links.map((l) => (
-                  <Link key={l.to} to={l.to}>{l.label}</Link>
+          <div className="home-faq-grid">
+            {homeFaqs.map((item, i) => (
+              <div className="home-faq-card" key={item.question}>
+                <div className="home-faq-num">{String(i + 1).padStart(2, '0')}</div>
+                <h2 className="home-faq-q">{item.question}</h2>
+                {item.answers.map((a) => (
+                  <p className="home-faq-a" key={a}>{a}</p>
                 ))}
+                <div className="home-faq-links">
+                  {item.links.map((l) => (
+                    <Link key={l.to} to={l.to} className="home-faq-link-pill">{l.label}</Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
 
-          <div className="home-faq-item">
+          <div className="home-why-card-outer">
             <h2 className="home-faq-q">Why choose GST Concepts over a single-brand or single-category supplier?</h2>
             <div className="home-why">
               {whyChoose.map((w) => (

@@ -292,7 +292,7 @@ export default function Leadcom() {
         paragraphs: [
           'Leadcom is a leading manufacturer of premium seating solutions for cinemas, auditoriums, airports, and sports venues. Their commitment to innovation and manufacturing excellence makes them the choice for major projects worldwide.',
         ],
-        media: <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80" alt="Leadcom Cinema Seating" />,
+        media: <img src="https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg" alt="Leadcom FIPO LUXE — Auditorium Seating" />,
       }}
       galleryTitle="LEADCOM COLLECTION"
       galleryItems={gallery}

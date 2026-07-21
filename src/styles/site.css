@@ -1699,10 +1699,6 @@ section {
     padding: 18px 44px;
 }
 
-.about-cta-card {
-    align-items: center;
-}
-
 .team-member {
     overflow: hidden;
     cursor: pointer;

@@ -1,4 +1,4 @@
-// Nitrocare medical furniture catalogue, sourced from furniconcepts.com/nitrocare.php
+// Nitrocare medical furniture catalogue, sourced from 
 export const nitrocareProducts = [
   { src: '/images/nitrocare/stools.jpg', alt: 'Nitrocare Stools', caption: 'Stools' },
   { src: '/images/nitrocare/home-care-beds.png', alt: 'Nitrocare Home Care Beds', caption: 'Home Care Beds' },

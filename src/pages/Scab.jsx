@@ -152,7 +152,7 @@ export default function Scab() {
           'SCAB is a benchmark in the production of furniture for the contract, home, and garden sectors. Their products are characterized by a focus on aesthetics and research into materials and technical processes.',
           'With more than 60 years of history, SCAB continues to innovate and create furniture that is perfect for any modern environment, combining quality with functional design.',
         ],
-        media: <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80" alt="Scab Seating" />,
+        media: <img src="/images/scab/chairs-and-armchairs/brezza.webp" alt="Scab Brezza" />,
       }}
       galleryTitle="SCAB COLLECTION"
       galleryItems={scabProducts}

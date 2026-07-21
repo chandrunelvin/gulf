@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
+import ModelViewer from '../components/ModelViewer.jsx'
 
 const seoTitle = 'Brunonic Office Furniture Dealer in Oman | GST Concepts'
 const seoDescription = 'GST Concepts - workstations, seating & desks in Muscat & Oman.'
@@ -163,7 +164,7 @@ export default function Brunonic() {
         paragraphs: [
           'Brunonic is a leading designer and manufacturer of contemporary office furniture, with a focus on creating spaces that foster collaboration, creativity, and well-being.',
         ],
-        media: <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Brunonic Office Furniture" />,
+        media: <ModelViewer glb="/images/3d model/brunonic-brand.glb" />,
       }}
       projects={{ title: 'BRUNONIC PROJECTS', items: projects }}
       brochure={

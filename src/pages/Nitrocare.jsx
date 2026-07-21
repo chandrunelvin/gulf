@@ -147,7 +147,7 @@ export default function Nitrocare() {
           'Nitrocare delivers medical-grade furniture designed around patient wellbeing and clinical efficiency. Every recliner, bed, and table is built for hygiene, durability, and effortless adjustment — supporting both the people who heal and those who recover.',
           'From hospital wards and day-care clinics to dialysis and examination rooms, Nitrocare provides dependable solutions trusted by healthcare facilities across Oman and the wider Gulf.',
         ],
-        media: <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80" alt="Nitrocare Medical Furniture" />,
+        media: <img src="/images/nitrocare/patient-beds.jpeg" alt="Nitrocare Patient Beds" />,
       }}
       galleryTitle="NITROCARE COLLECTION"
       galleryItems={nitrocareProducts}

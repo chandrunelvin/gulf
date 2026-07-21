@@ -396,17 +396,11 @@ export default function About() {
         </div>
       </section>
 
-      <section className="brochure-section">
-        <div className="container">
-          <div className="brochure-card reveal about-cta-card">
-            <div className="brochure-copy">
-              <h2>Have A Commercial Or Institutional Project In Oman?</h2>
-              <p>Talk to GST Concepts for coordinated sourcing across auditorium seating, office furniture, workplace fit-outs, and healthcare furniture requirements.</p>
-            </div>
-            <div className="brochure-actions">
-              <Link to="/contact" className="cta-btn">Contact GST Concepts</Link>
-            </div>
-          </div>
+      <section className="partner-final-cta">
+        <div className="container partner-final-cta-inner reveal">
+          <h2>Have A Commercial Or Institutional Project In Oman?</h2>
+          <p>Talk to GST Concepts for coordinated sourcing across auditorium seating, office furniture, workplace fit-outs, and healthcare furniture requirements.</p>
+          <Link to="/contact" className="cta-btn partner-final-cta-btn">Contact GST Concepts</Link>
         </div>
       </section>
 
