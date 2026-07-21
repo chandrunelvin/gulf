@@ -290,19 +290,23 @@ export default function About() {
         </div>
       </section>
 
-      <section className="values about-difference-section">
+      <section className="gst-pillars-section">
         <div className="container">
-          <div className="about-difference-head reveal">
+          <div className="gst-pillars-head reveal">
+            <div className="projects-eyebrow">WHY GST CONCEPTS</div>
             <h2 className="section-title">What Makes GST Concepts Different?</h2>
             <p>A clearer look at the branch structure, brand access, and project-led approach behind GST Concepts in Oman.</p>
           </div>
-          <div className="about-question-grid about-difference-grid">
-            {overviewSections.map((section) => (
-              <article className="about-question-card about-difference-card reveal" key={section.question}>
-                <h3 className="about-question-title">{section.question}</h3>
-                {section.answers.map((answer) => (
-                  <p key={answer}>{answer}</p>
-                ))}
+          <div className="gst-pillars-list">
+            {overviewSections.map((section, i) => (
+              <article className="gst-pillar reveal" key={section.question}>
+                <div className="gst-pillar-index">{String(i + 1).padStart(2, '0')}</div>
+                <div className="gst-pillar-body">
+                  <h3>{section.question}</h3>
+                  {section.answers.map((answer) => (
+                    <p key={answer}>{answer}</p>
+                  ))}
+                </div>
               </article>
             ))}
           </div>

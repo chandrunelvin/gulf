@@ -22,6 +22,75 @@ const brandCards = [
   { name: 'AUDIA', accent: '#8a2b1f', soft: '#fbeae6', num: '05', glb: '/images/3d model/AUDIA.compressed.glb', cat: 'Auditorium Solutions', prods: 'Theatre Seating · Gulf Venues · Custom Colours', to: '/audia' },
 ]
 
+const seoTitle = 'GST Concepts | Office, Seating & Hospital Furniture Supplier Oman'
+const seoDescription = 'GST Concepts is a Muscat-based commercial furniture supplier in Oman — office furniture, auditorium and cinema seating, hospital furniture, and Italian contract brands.'
+
+const trustBar = [
+  { icon: 'fa-certificate', text: 'Authorized dealer for 5 international brands in seating, office & healthcare furniture' },
+  { icon: 'fa-truck-ramp-box', text: 'Project-based logistics — bulk procurement, space planning, delivery & installation' },
+  { icon: 'fa-location-dot', text: 'Muscat based — single-source solution for all your Oman project requirements' },
+]
+
+// Each item's question/answer text is reused verbatim for the FAQPage schema below —
+// one canonical answer per fact, not a separately-worded restatement.
+const homeFaqs = [
+  {
+    question: 'Who is an office furniture supplier in Muscat and Oman?',
+    answers: [
+      'There are existing companies in the market for office furniture in Muscat, such as Khimji Ramdas, Bahwan Furnishings, and Fahmy Furniture, who have been in the business for many years. GST Concepts does not offer its services as another local showroom for office furniture.',
+      'Instead, it follows a project-based approach that includes fit-out solutions involving workstation and office furniture from Brunonic and Scab.',
+    ],
+    links: [
+      { label: 'See Brunonic office furniture →', to: '/brunonic' },
+      { label: 'See Scab workplace furniture →', to: '/scab' },
+    ],
+  },
+  {
+    question: 'Who is a seating supplier in Oman and Muscat?',
+    answers: [
+      'Installation of auditorium, cinema, and retractable seating in Oman has been carried out by local fit-out companies such as CDD Oman, Fahmy Furniture, and Khimji Ramdas, which typically source their seats from international brands.',
+      'GST Concepts, by comparison, supplies the seating directly — Leadcom and Audia Italia auditorium, cinema, and retractable seating systems.',
+    ],
+    links: [
+      { label: 'See Leadcom auditorium & retractable seating →', to: '/leadcom' },
+      { label: 'See Audia Italia seating →', to: '/audia' },
+    ],
+  },
+  {
+    question: 'Who is a hospital furniture supplier in Oman and Muscat?',
+    answers: [
+      'In Oman, hospital furniture is provided by specialty firms like IMTAC, Al Khalili Specialized Projects, Jaza (Al Jazeera Medical Innovations), and Mediniq Oman — most of them retail/showroom or equipment suppliers by category.',
+      'The Nitrocare range offered by GST Concepts comprises hospital beds, examination furniture, dialysis chairs, and ward furniture for facility projects.',
+    ],
+    links: [
+      { label: 'See Nitrocare hospital furniture →', to: '/nitrocare' },
+    ],
+  },
+  {
+    question: 'Where can I find Italian brand furniture in Muscat and Oman?',
+    answers: [
+      'Searching online for "Italian furniture in Muscat" mainly surfaces residential luxury brands like Fendi Casa, Bentley Home, Bonaldo, and Novamobili.',
+      'GST Concepts specializes in Italian furniture for the commercial and contract sector instead — Audia Italia (auditorium and cinema seating), Scab (workplace furniture), and Brunonic (office workstations & seating).',
+    ],
+    links: [
+      { label: 'Audia Italia →', to: '/audia' },
+      { label: 'Scab →', to: '/scab' },
+      { label: 'Brunonic →', to: '/brunonic' },
+    ],
+  },
+]
+
+const whyChoose = [
+  {
+    title: 'Multiple brands, one contact person',
+    body: 'Five brands under one project manager, rather than arranging different suppliers for seating, office furniture, and healthcare furniture.',
+  },
+  {
+    title: 'Contract-based, project-based approach',
+    body: 'Bulk procurement and installation for office, venue, and healthcare settings, compared to retail sales of single pieces.',
+  },
+]
+
 const zones = [
   { id: 'z_exterior', s: 0.0, e: 0.108, align: 'center' },
   { id: 'z_brunonic', s: 0.108, e: 0.296, align: 'left' },
@@ -39,6 +108,83 @@ export default function Home() {
   const [navOpen, setNavOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(false)
   const finalRef = useRef(null)
+
+  useEffect(() => {
+    const previousTitle = document.title
+    const metaDescription = document.querySelector('meta[name="description"]')
+    const previousDescription = metaDescription?.getAttribute('content') || ''
+
+    document.title = seoTitle
+    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
+
+    const schemaScripts = [
+      {
+        id: 'home-localbusiness-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'GST Concepts',
+          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+          telephone: ['+968 9710 0007', '+968 9806 7601'],
+          email: 'sales@gstconcepts.om',
+          areaServed: ['Oman', 'Singapore'],
+          description: seoDescription,
+        },
+      },
+      {
+        id: 'home-itemlist-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'GST Concepts Brand & Category Pages',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Leadcom Auditorium & Retractable Seating', url: `${window.location.origin}/leadcom` },
+            { '@type': 'ListItem', position: 2, name: 'Audia Italia Seating', url: `${window.location.origin}/audia` },
+            { '@type': 'ListItem', position: 3, name: 'Scab Workplace Furniture', url: `${window.location.origin}/scab` },
+            { '@type': 'ListItem', position: 4, name: 'Brunonic Office Furniture', url: `${window.location.origin}/brunonic` },
+            { '@type': 'ListItem', position: 5, name: 'Nitrocare Hospital Furniture', url: `${window.location.origin}/nitrocare` },
+          ],
+        },
+      },
+      {
+        id: 'home-faq-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: homeFaqs.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answers.join(' ') },
+          })),
+        },
+      },
+      {
+        id: 'home-breadcrumb-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
+          ],
+        },
+      },
+    ]
+
+    schemaScripts.forEach(({ id, content }) => {
+      document.getElementById(id)?.remove()
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.id = id
+      script.text = JSON.stringify(content)
+      document.head.appendChild(script)
+    })
+
+    return () => {
+      document.title = previousTitle
+      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
+      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
+    }
+  }, [])
 
   useEffect(() => {
     let disposed = false
@@ -299,6 +445,26 @@ export default function Home() {
         </div>
       </div>
 
+      {/* SEO INTRO / H1 / TRUST BAR */}
+      <section className="intro-seo">
+        <div className="intro-seo-wrap">
+          <div className="intro-eyebrow">MUSCAT, SULTANATE OF OMAN</div>
+          <h1 className="intro-h1">GST Concepts — Commercial Furniture Supplier for Oman, Muscat</h1>
+          <div className="intro-sep"></div>
+          <p className="intro-body">
+            GST Concepts, located in Muscat, offers office furniture, auditorium and cinema seating, hospital and healthcare furniture, and Italian contract brands for commercial and institutional projects throughout the Sultanate. Unlike single-brand retail showrooms, GST Concepts sources across five authorized brands — Audia Italia, Scab, Leadcom, Brunonic and Nitrocare.
+          </p>
+          <div className="trust-bar">
+            {trustBar.map((t) => (
+              <div className="trust-item" key={t.text}>
+                <span className="trust-icon"><i className={`fas ${t.icon}`}></i></span>
+                <span className="trust-text">{t.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BRAND GRID */}
       <section className="collection">
         <div className="coll-head">
@@ -320,6 +486,42 @@ export default function Home() {
               <span className="brand-link">EXPLORE →</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* HOME FAQ — CATEGORY SUPPLIER Q&A */}
+      <section className="home-faq-section">
+        <div className="home-faq-wrap">
+          {homeFaqs.map((item) => (
+            <div className="home-faq-item" key={item.question}>
+              <h2 className="home-faq-q">{item.question}</h2>
+              {item.answers.map((a) => (
+                <p className="home-faq-a" key={a}>{a}</p>
+              ))}
+              <div className="home-faq-links">
+                {item.links.map((l) => (
+                  <Link key={l.to} to={l.to}>{l.label}</Link>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className="home-faq-item">
+            <h2 className="home-faq-q">Why choose GST Concepts over a single-brand or single-category supplier?</h2>
+            <div className="home-why">
+              {whyChoose.map((w) => (
+                <div className="home-why-card" key={w.title}>
+                  <h4>{w.title}</h4>
+                  <p>{w.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="home-seo-cta">
+            <div className="home-seo-cta-lead">Planning a commercial or institutional project in Oman?</div>
+            <Link to="/contact" className="home-seo-cta-btn">Start Your Project →</Link>
+          </div>
         </div>
       </section>
 

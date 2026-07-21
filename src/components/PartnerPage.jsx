@@ -15,13 +15,16 @@ import ProjectSlider from './ProjectSlider.jsx'
  *  - galleryTitle, galleryItems? — gallery section is omitted entirely when galleryItems is not given
  *  - galleryCategories: [{ id, label }] — when given, renders category tabs
  *    and each gallery item is filtered by its `category` field
+ *  - productRange?: { eyebrow?, title?, description?, icon?, categories: [{ name, icon?, items: string[] }] } —
+ *    animated-background card grid of manufacturer product categories/model names, rendered right after
+ *    the gallery section; `icon` is a Font Awesome class e.g. "fa-chair"
  *  - projects: { title?, items: [{ src, alt, title, location }] }
  *  - brochure: ReactNode rendered inside `.brochure-section > .container`
  *  - faq?: { eyebrow?, title?, description?, items: [{ question, answer }] } — numbered accordion,
  *    rendered after the brochure section; reuses the same copy for any FAQPage schema the page injects
  *  - cta?: { title, body?, linkLabel, linkTo } — full-bleed closing call-to-action band, always the last section
  */
-export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, galleryItems, galleryCategories, projects, brochure, cta, faq }) {
+export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, galleryItems, galleryCategories, projects, productRange, brochure, cta, faq }) {
   return (
     <SiteLayout active="partners">
       <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')` }}>
@@ -69,6 +72,35 @@ export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, ga
             ) : (
               <CollectionGallery items={galleryItems} />
             )}
+          </div>
+        </section>
+      )}
+
+      {productRange && productRange.categories?.length > 0 && (
+        <section className="product-range-section">
+          <div className="product-range-pattern" aria-hidden="true"></div>
+          <div className="container">
+            <div className="product-range-head reveal">
+              <div className="product-range-badge"><i className={`fas ${productRange.icon || 'fa-layer-group'}`}></i></div>
+              <div className="projects-eyebrow">{productRange.eyebrow || 'FULL RANGE'}</div>
+              {productRange.title && <h2 className="section-title">{productRange.title}</h2>}
+              {productRange.description && <p>{productRange.description}</p>}
+            </div>
+            <div className="product-range-grid">
+              {productRange.categories.map((cat) => (
+                <article className="product-range-card reveal" key={cat.name}>
+                  <div className="product-range-card-head">
+                    <span className="product-range-icon"><i className={`fas ${cat.icon || 'fa-circle'}`}></i></span>
+                    <h3>{cat.name}</h3>
+                  </div>
+                  <ul className="product-range-list">
+                    {cat.items.map((item) => (
+                      <li key={item}><i className="fas fa-circle"></i>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
       )}
