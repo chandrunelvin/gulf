@@ -4,6 +4,8 @@ import homeCss from '../styles/home.css?inline'
 import useScopedStyle from '../hooks/useScopedStyle.js'
 import ModelViewer from '../components/ModelViewer.jsx'
 import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
+import SiteSearch from '../components/SiteSearch.jsx'
+import ProjectSlider from '../components/ProjectSlider.jsx'
 
 const TOTAL = 288
 
@@ -13,6 +15,12 @@ const tickerItems = [
   'Lifestyle Seating', 'Premium Auditorium Chairs', 'Medical Furniture',
   'VAT Invoice Included', '5-Year Warranty', 'Pan-Gulf Delivery',
   'Sultanate of Oman', 'Design to Deliver with Style', 'Muscat',
+]
+
+const projects = [
+  { src: '/project/Amity-School-Qusais-project.jpeg', title: 'Amity School Qusais', location: 'Dubai, UAE', desc: 'Classroom and campus furniture supplied and installed across the school, delivered to meet education-sector durability and safety standards.' },
+  { src: '/project/tamayez-project.jpeg', title: 'SOS, Tamayez Architect', location: 'Oil & Gas · Muscat, Oman', desc: 'Furniture supply and installation delivered with Tamayez Architect for an oil & gas sector fit-out in Muscat.' },
+  { src: '/project/telescopic-project.jpg', title: 'Telescopic Seating', location: 'Oman', desc: 'Telescopic retractable seating supplied and installed for a multi-purpose venue in Oman.' },
 ]
 
 const brandCards = [
@@ -411,6 +419,7 @@ export default function Home() {
           <li><Link to="/blog" onClick={closeNav}>Blog</Link></li>
           <li><Link to="/contact" onClick={closeNav}>Contact</Link></li>
         </ul>
+        <SiteSearch onNavigate={closeNav} />
         <Link to="/contact" className="nav-cta">Get a Quote →</Link>
         <div
           className={`burger${navOpen ? ' toggle' : ''}`}
@@ -473,6 +482,17 @@ export default function Home() {
               <span className="brand-link">EXPLORE →</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section className="home-projects">
+        <div className="home-projects-inner">
+          <div className="home-projects-head">
+            <div className="home-projects-eyebrow">SELECTED WORK — ACROSS THE GULF</div>
+            <h2 className="home-projects-title">Featured Projects</h2>
+          </div>
+          <ProjectSlider items={projects} />
         </div>
       </section>
 

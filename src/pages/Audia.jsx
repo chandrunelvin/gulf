@@ -27,11 +27,6 @@ const gallery = [
   { src: '/images/audiaitalia/image-23.webp', alt: 'Audia Vesta Pozzetto auditorium chair', caption: 'VESTA POZZETTO' },
 ]
 
-const projects = [
-  { src: 'https://images.unsplash.com/photo-1503095396549-807a8bc3667c?auto=format&fit=crop&w=1400&q=80', title: 'Grand Theatre Auditorium', location: 'Muscat, Oman', desc: 'Flip-up velvet seating in curved tiered rows for a 1,200-seat national stage, delivered with acoustic panelling and gold arch detailing.' },
-  { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=80', title: 'University Lecture Theatre', location: 'Salalah, Oman', desc: 'Ergonomic writing-tablet seating across three lecture halls, engineered for sightlines, durability and daily academic use.' },
-  { src: 'https://images.unsplash.com/photo-1475721027464-585586198cb9?auto=format&fit=crop&w=1400&q=80', title: 'Performing Arts Centre', location: 'Doha, Qatar', desc: 'Custom-coloured auditorium chairs with integrated stage lighting coordination for a premier Gulf performing arts venue.' },
-]
 
 // Each item is rendered once as a visible question/answer card and reused, verbatim,
 // to build the FAQPage schema below — one canonical answer per fact, not a restated copy.
@@ -172,7 +167,6 @@ export default function Audia() {
       galleryTitle="AUDIA COLLECTION"
       galleryItems={gallery}
       galleryImgFit="contain"
-      projects={{ title: 'AUDIA PROJECTS', items: projects }}
       brochure={
         <div className="brochure-card">
           <div className="brochure-copy">

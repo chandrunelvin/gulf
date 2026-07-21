@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import SiteSearch from './SiteSearch.jsx'
 
 /**
  * Shared header for the Gulf Supply & Services sub-pages (styled by site.css).
@@ -50,6 +51,7 @@ export default function PageHeader({ active }) {
           <li><Link to="/blog" className={active === 'blog' ? 'active' : ''} onClick={closeNav}>Blog</Link></li>
           <li><Link to="/contact" className={active === 'contact' ? 'active' : ''} onClick={closeNav}>Contact</Link></li>
         </ul>
+        <SiteSearch onNavigate={closeNav} />
         <Link to="/contact" className="nav-cta">Get a Quote →</Link>
         <div
           className={`burger${navOpen ? ' toggle' : ''}`}
