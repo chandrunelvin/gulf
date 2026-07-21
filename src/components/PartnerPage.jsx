@@ -8,10 +8,11 @@ import ProjectSlider from './ProjectSlider.jsx'
  * Shared scaffold for a partner brand detail page (Audia, Scab, Leadcom, etc.).
  *
  * Props:
- *  - hero: { bg, logo?, title, subtitle }
+ *  - hero: { bg, logo?, logoOriginal?, title, subtitle } — logoOriginal skips the white-recolor
+ *    filter for logos that are already finished art (e.g. white-on-dark) rather than a flat mark
  *  - breadcrumb?: [{ label, href? }] — rendered under the hero heading, last item is the current page
  *  - detail: { title, paragraphs: string[], media: ReactNode }
- *  - galleryTitle, galleryItems
+ *  - galleryTitle, galleryItems? — gallery section is omitted entirely when galleryItems is not given
  *  - galleryCategories: [{ id, label }] — when given, renders category tabs
  *    and each gallery item is filtered by its `category` field
  *  - projects: { title?, items: [{ src, alt, title, location }] }
@@ -35,8 +36,14 @@ export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, ga
               ))}
             </div>
           )}
-          {hero.logo && <img src={hero.logo} alt={`${hero.title} Logo`} className="hero-logo" />}
-          <h1 className="reveal-text partner-hero-title">{hero.title}</h1>
+          {hero.logo && (
+            <img
+              src={hero.logo}
+              alt={`${hero.title} Logo`}
+              className={`hero-logo${hero.logoOriginal ? ' hero-logo-original' : ''}`}
+            />
+          )}
+          <h1 className="reveal-text hero-title-compact">{hero.title}</h1>
           <p>{hero.subtitle}</p>
         </div>
       </section>
@@ -53,16 +60,18 @@ export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, ga
         </div>
       </section>
 
-      <section className="product-gallery">
-        <div className="container">
-          <h2 className="section-title">{galleryTitle}</h2>
-          {galleryCategories ? (
-            <TabbedCollection categories={galleryCategories} items={galleryItems} />
-          ) : (
-            <CollectionGallery items={galleryItems} />
-          )}
-        </div>
-      </section>
+      {galleryItems && galleryItems.length > 0 && (
+        <section className="product-gallery">
+          <div className="container">
+            <h2 className="section-title">{galleryTitle}</h2>
+            {galleryCategories ? (
+              <TabbedCollection categories={galleryCategories} items={galleryItems} />
+            ) : (
+              <CollectionGallery items={galleryItems} />
+            )}
+          </div>
+        </section>
+      )}
 
       {projects && projects.items?.length > 0 && (
         <section className="projects-section">

@@ -314,7 +314,7 @@ nav {
     max-width: 760px;
 }
 
-.page-hero h1.partner-hero-title {
+.page-hero h1.hero-title-compact {
     font-size: clamp(28px, 3.4vw, 46px);
     font-weight: 400;
     line-height: 1.2;
@@ -326,6 +326,10 @@ nav {
     height: auto;
     margin-bottom: 28px;
     filter: brightness(0) invert(1);
+}
+
+.hero-logo-original {
+    filter: none;
 }
 
 section {
@@ -929,6 +933,38 @@ section {
 
 .intro-text {
     max-width: 760px;
+}
+
+.contact-brand-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.contact-brand-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--dark);
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+
+.contact-brand-pill:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.map-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
 }
 
 .section-title::before,
@@ -1723,7 +1759,8 @@ section {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     border: none;
     border-bottom: 1px solid rgba(26, 26, 26, 0.16);
@@ -1732,6 +1769,8 @@ section {
     color: var(--dark);
     outline: none;
     transition: border-color 0.3s ease;
+    font-family: var(--sans);
+    font-size: 15px;
 }
 
 .form-group input::placeholder,
@@ -1741,13 +1780,28 @@ section {
 }
 
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
     border-bottom-color: var(--gold);
 }
 
 .form-group textarea {
     resize: vertical;
     min-height: 140px;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23159b94' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    background-size: 14px;
+}
+
+.form-group select:invalid,
+.form-group select option[value=""] {
+    color: rgba(26, 26, 26, 0.42);
 }
 
 .cta-btn {
@@ -1774,7 +1828,7 @@ section {
 }
 
 .map {
-    padding-top: 0;
+    padding-top: 90px;
 }
 
 .map-container {
@@ -1787,6 +1841,20 @@ section {
 
 .collection-page .collection-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.collection-load-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 48px;
+}
+
+.collection-load-more-count {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--muted);
 }
 
 .collection-item,

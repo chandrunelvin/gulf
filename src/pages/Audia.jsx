@@ -79,11 +79,6 @@ export default function Audia() {
           '@type': 'Organization',
           name: 'GST Concepts',
           alternateName: 'GST Concepts',
-          parentOrganization: {
-            '@type': 'Organization',
-            name: 'Furniconcepts',
-            url: 'https://www.furniconcepts.com',
-          },
           sameAs: ['https://www.furniconcepts.com'],
           address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
           telephone: ['+968 9710 0007', '+968 9806 7601'],

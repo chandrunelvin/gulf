@@ -1,22 +1,31 @@
 import { useCallback, useEffect, useState } from 'react'
 
+const PAGE_SIZE = 20
+
 /**
  * Renders a `.collection-grid` of items with a click-to-open lightbox, keyboard
  * navigation and a counter — a React port of the gallery lightbox in script.js.
  * `items`: [{ src, alt, caption }]
+ *
+ * Only the first 20 items render initially; a "See More" button reveals the
+ * next 20 at a time so large collections (100+ products) don't load or paint at once.
  */
 export default function CollectionGallery({ items, reveal = true }) {
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
+  const visibleItems = items.slice(0, visibleCount)
+  const hasMore = visibleCount < items.length
+
   const [index, setIndex] = useState(-1)
   const open = index >= 0
 
   const close = useCallback(() => setIndex(-1), [])
   const next = useCallback(
-    () => setIndex((i) => (i + 1) % items.length),
-    [items.length]
+    () => setIndex((i) => (i + 1) % visibleItems.length),
+    [visibleItems.length]
   )
   const prev = useCallback(
-    () => setIndex((i) => (i - 1 + items.length) % items.length),
-    [items.length]
+    () => setIndex((i) => (i - 1 + visibleItems.length) % visibleItems.length),
+    [visibleItems.length]
   )
 
   useEffect(() => {
@@ -37,12 +46,12 @@ export default function CollectionGallery({ items, reveal = true }) {
     return () => document.removeEventListener('keydown', onKey)
   }, [open, close, next, prev])
 
-  const current = open ? items[index] : null
+  const current = open ? visibleItems[index] : null
 
   return (
     <>
       <div className="collection-grid">
-        {items.map((item, i) => (
+        {visibleItems.map((item, i) => (
           <div
             key={i}
             className={`collection-item${reveal ? ' reveal' : ''}`}
@@ -62,6 +71,15 @@ export default function CollectionGallery({ items, reveal = true }) {
           </div>
         ))}
       </div>
+
+      {hasMore && (
+        <div className="collection-load-more">
+          <button type="button" className="cta-btn collection-load-more-btn" onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}>
+            See More
+          </button>
+          <span className="collection-load-more-count">Showing {visibleItems.length} of {items.length}</span>
+        </div>
+      )}
 
       {open && (
         <div
@@ -85,7 +103,7 @@ export default function CollectionGallery({ items, reveal = true }) {
             </button>
             <div className="gallery-lightbox-caption">
               <span className="gallery-lightbox-title">{current.caption}</span>
-              <span className="gallery-lightbox-counter">{index + 1} / {items.length}</span>
+              <span className="gallery-lightbox-counter">{index + 1} / {visibleItems.length}</span>
             </div>
           </div>
         </div>

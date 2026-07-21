@@ -182,15 +182,6 @@ export default function About() {
             '@type': 'Organization',
             name: 'GST Concepts',
             legalName: 'GULF SERVICE AND TRADING',
-            parentOrganization: {
-              '@type': 'Organization',
-              name: 'Furniconcepts',
-              url: 'https://www.furniconcepts.com',
-              hasCredential: {
-                '@type': 'EducationalOccupationalCredential',
-                credentialCategory: 'ISO 9001:2015',
-              },
-            },
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'PC 112, PO Box 543',
@@ -278,7 +269,7 @@ export default function About() {
             <span>/</span>
             <span>About</span>
           </div>
-          <h1 className="reveal-text">About GST Concepts — Furniconcepts&apos; Branch in Muscat, Oman</h1>
+          <h1 className="reveal-text hero-title-compact">About GST Concepts — Furniconcepts&apos; Branch in Muscat, Oman</h1>
           <p>One branch. Five brands. Commercial furniture support for Oman.</p>
         </div>
       </section>
