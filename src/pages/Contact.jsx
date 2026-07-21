@@ -176,37 +176,6 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="map">
-        <div className="container">
-          <div className="team-header reveal">
-            <h2 className="section-title">Find Us in Muscat</h2>
-            <p>PC 112, PO Box 543 — Muscat, Sultanate of Oman.</p>
-          </div>
-          <div className="map-container reveal">
-            <iframe
-              title="GST Concepts, Muscat, Sultanate of Oman map"
-              src="https://maps.google.com/maps?q=Muscat%2C%20Sultanate%20of%20Oman&z=12&output=embed"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-          <div className="map-cta">
-            <a
-              href="https://maps.google.com/maps?q=Muscat%2C%20Sultanate%20of%20Oman%2C%20PC%20112%2C%20PO%20Box%20543"
-              target="_blank"
-              rel="noopener"
-              className="cta-btn"
-            >
-              Get Directions <i className="fas fa-arrow-up-right-from-square" style={{ marginLeft: '10px' }}></i>
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="values faq-section">
         <div className="container">
           <div className="team-header reveal">

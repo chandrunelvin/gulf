@@ -399,6 +399,29 @@ section {
         linear-gradient(180deg, #f8fcfb 0%, var(--cream-2) 100%);
 }
 
+.coming-soon-section {
+    min-height: 56vh;
+    display: flex;
+    align-items: center;
+}
+
+.coming-soon-section .container {
+    display: flex;
+    justify-content: center;
+}
+
+.coming-soon-block {
+    max-width: 620px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.coming-soon-block .cta-btn {
+    margin-top: 28px;
+}
+
 .blog-meta {
     display: flex;
     align-items: center;
@@ -2024,6 +2047,15 @@ section {
     filter: saturate(1.04);
 }
 
+.collection-item-contain {
+    background: #fff;
+}
+
+.collection-item-contain img {
+    object-fit: contain;
+    padding: 28px;
+}
+
 .overlay,
 .partner-card p {
     position: absolute;
@@ -2232,16 +2264,13 @@ footer {
 .footer-bottom {
     padding-top: 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     gap: 10px;
     flex-wrap: wrap;
     font-size: 11px;
     letter-spacing: 1px;
     color: rgba(26, 26, 26, 0.68);
-}
-
-.footer-bottom::after {
-    content: "Design to Deliver with Style.";
 }
 
 .reveal {

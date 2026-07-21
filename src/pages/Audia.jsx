@@ -171,6 +171,7 @@ export default function Audia() {
       }}
       galleryTitle="AUDIA COLLECTION"
       galleryItems={gallery}
+      galleryImgFit="contain"
       projects={{ title: 'AUDIA PROJECTS', items: projects }}
       brochure={
         <div className="brochure-card">

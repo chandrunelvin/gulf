@@ -35,6 +35,7 @@ const trustBar = [
 // one canonical answer per fact, not a separately-worded restatement.
 const homeFaqs = [
   {
+    icon: 'fa-building',
     question: 'Who is an office furniture supplier in Muscat and Oman?',
     answers: [
       'There are existing companies in the market for office furniture in Muscat, such as Khimji Ramdas, Bahwan Furnishings, and Fahmy Furniture, who have been in the business for many years. GST Concepts does not offer its services as another local showroom for office furniture.',
@@ -46,6 +47,7 @@ const homeFaqs = [
     ],
   },
   {
+    icon: 'fa-couch',
     question: 'Who is a seating supplier in Oman and Muscat?',
     answers: [
       'Installation of auditorium, cinema, and retractable seating in Oman has been carried out by local fit-out companies such as CDD Oman, Fahmy Furniture, and Khimji Ramdas, which typically source their seats from international brands.',
@@ -57,6 +59,7 @@ const homeFaqs = [
     ],
   },
   {
+    icon: 'fa-house-medical',
     question: 'Who is a hospital furniture supplier in Oman and Muscat?',
     answers: [
       'In Oman, hospital furniture is provided by specialty firms like IMTAC, Al Khalili Specialized Projects, Jaza (Al Jazeera Medical Innovations), and Mediniq Oman — most of them retail/showroom or equipment suppliers by category.',
@@ -67,6 +70,7 @@ const homeFaqs = [
     ],
   },
   {
+    icon: 'fa-gem',
     question: 'Where can I find Italian brand furniture in Muscat and Oman?',
     answers: [
       'Searching online for "Italian furniture in Muscat" mainly surfaces residential luxury brands like Fendi Casa, Bentley Home, Bonaldo, and Novamobili.',
@@ -82,10 +86,12 @@ const homeFaqs = [
 
 const whyChoose = [
   {
+    icon: 'fa-user-tie',
     title: 'Multiple brands, one contact person',
     body: 'Five brands under one project manager, rather than arranging different suppliers for seating, office furniture, and healthcare furniture.',
   },
   {
+    icon: 'fa-file-signature',
     title: 'Contract-based, project-based approach',
     body: 'Bulk procurement and installation for office, venue, and healthcare settings, compared to retail sales of single pieces.',
   },
@@ -496,7 +502,10 @@ export default function Home() {
           <div className="home-faq-grid">
             {homeFaqs.map((item, i) => (
               <div className="home-faq-card" key={item.question}>
-                <div className="home-faq-num">{String(i + 1).padStart(2, '0')}</div>
+                <div className="home-faq-top">
+                  <div className="home-faq-icon"><i className={`fas ${item.icon}`}></i></div>
+                  <div className="home-faq-num">{String(i + 1).padStart(2, '0')}</div>
+                </div>
                 <h2 className="home-faq-q">{item.question}</h2>
                 {item.answers.map((a) => (
                   <p className="home-faq-a" key={a}>{a}</p>
@@ -515,6 +524,7 @@ export default function Home() {
             <div className="home-why">
               {whyChoose.map((w) => (
                 <div className="home-why-card" key={w.title}>
+                  <div className="home-why-icon"><i className={`fas ${w.icon}`}></i></div>
                   <h4>{w.title}</h4>
                   <p>{w.body}</p>
                 </div>
@@ -525,34 +535,6 @@ export default function Home() {
           <div className="home-seo-cta">
             <div className="home-seo-cta-lead">Planning a commercial or institutional project in Oman?</div>
             <Link to="/contact" className="home-seo-cta-btn">Start Your Project →</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="about" id="about">
-        <div className="about-wrap">
-          <div className="about-text">
-            <div className="about-eyebrow">— ABOUT GST CONCEPTS</div>
-            <h2 className="about-h">Design to Deliver <span className="gold">with Style.</span></h2>
-            <div className="about-sep"></div>
-            <p className="about-body">GST Concepts is the destination for sophisticated furniture in the IMEA region — five world-class collections under one roof in Muscat. From Italian office systems to auditorium seating and medical-grade comfort, every piece is selected for craftsmanship, function, and quiet confidence.</p>
-            <p className="about-body">We partner directly with the finest manufacturers across Europe and deliver across the Sultanate of Oman and the wider Gulf, with valid VAT invoicing on every order.</p>
-            <div className="about-stats">
-              <div className="about-stat"><div className="n">05</div><div className="l">Collections</div></div>
-              <div className="about-stat"><div className="n">Gulf</div><div className="l">Delivery</div></div>
-              <div className="about-stat"><div className="n">10+</div><div className="l">Years</div></div>
-            </div>
-          </div>
-          <div className="about-img">
-            <video className="about-video" autoPlay muted loop playsInline aria-label="GST Concepts furniture collection video placeholder"></video>
-            <div className="about-video-placeholder" aria-hidden="true">
-              <div className="about-video-card">
-                <div className="about-video-kicker">Collection Film</div>
-                <div className="about-video-title">Video Placeholder</div>
-                <div className="about-video-note">Add your furniture video source here</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -602,6 +584,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ABOUT */}
+      <section className="about" id="about">
+        <div className="about-wrap">
+          <div className="about-text">
+            <div className="about-eyebrow">— ABOUT GST CONCEPTS</div>
+            <h2 className="about-h">Design to Deliver <span className="gold">with Style.</span></h2>
+            <div className="about-sep"></div>
+            <p className="about-body">GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman. Operating under GULF SERVICE AND TRADING, it brings together seating, workplace, and healthcare furniture through one commercial relationship instead of a single-brand showroom.</p>
+            <p className="about-body">GST Concepts is the authorized regional partner in Oman for five international brands — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare — covering auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture for commercial and institutional projects across Oman.</p>
+            <Link to="/about" className="about-cta-btn">About Us →</Link>
+          </div>
+          <div className="about-img">
+            <video className="about-video" autoPlay muted loop playsInline aria-label="GST Concepts furniture collection video placeholder"></video>
+            <div className="about-video-placeholder" aria-hidden="true">
+              <div className="about-video-card">
+                <div className="about-video-kicker">Collection Film</div>
+                <div className="about-video-title">Video Placeholder</div>
+                <div className="about-video-note">Add your furniture video source here</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="final" ref={finalRef}>
         <div className="final-scene" aria-hidden="true">
@@ -618,12 +624,12 @@ export default function Home() {
         <div className="final-ghost">GST</div>
         <div className="final-glow"></div>
         <div className="final-inner">
-          <div className="final-eyebrow">— AVAILABLE NOW · MUSCAT, OMAN</div>
-          <div className="final-h">Furniture for</div>
-          <div className="final-h gold">Every space furnished.</div>
+          <div className="final-eyebrow">— GST CONCEPTS · MUSCAT, OMAN</div>
+          <div className="final-h">Furnishing Oman's</div>
+          <div className="final-h gold">Commercial &amp; Institutional Spaces.</div>
           <div className="final-sup">
-            VAT compliant · Valid invoice with every order<br />
-            White-glove delivery · Assembled at your door<br />
+            Office, seating &amp; healthcare furniture · Five authorized international brands<br />
+            Project-based procurement, delivery &amp; installation — not single-piece retail<br />
             Pan-Gulf shipping · Gulf Supply &amp; Services Trading, Muscat
           </div>
           <div className="specs">
@@ -633,7 +639,7 @@ export default function Home() {
             <div className="spec"><div className="spec-l">SHIPPING</div><div className="spec-v">PAN-GULF</div></div>
           </div>
           <div className="final-btns">
-            <Link to="/contact" className="btn-final-pri">VISIT GST CONCEPTS</Link>
+            <Link to="/contact" className="btn-final-pri">START YOUR PROJECT</Link>
             <Link to="/contact" className="btn-final-ghost">REQUEST A QUOTE</Link>
           </div>
         </div>
@@ -667,6 +673,7 @@ export default function Home() {
               <li><Link to="/scab">Scab</Link></li>
               <li><Link to="/leadcom">Leadcom</Link></li>
               <li><Link to="/brunonic">Brunonic</Link></li>
+              <li><Link to="/nitrocare">Nitrocare</Link></li>
             </ul>
           </div>
           <div className="footer-col">
@@ -687,7 +694,6 @@ export default function Home() {
         </div>
         <div className="footer-bottom">
           <span>© 2026 Gulf Supply and Services Trading. All Rights Reserved.</span>
-          <span>Design to Deliver with Style.</span>
         </div>
       </footer>
 

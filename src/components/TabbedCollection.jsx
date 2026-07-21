@@ -6,7 +6,7 @@ import CollectionGallery from './CollectionGallery.jsx'
  * category) above a CollectionGallery limited to the active category.
  * `categories`: [{ id, label }] — `items`: [{ category, src, alt, caption }]
  */
-export default function TabbedCollection({ categories, items }) {
+export default function TabbedCollection({ categories, items, imgFit }) {
   const [active, setActive] = useState('all')
 
   const filtered = useMemo(
@@ -43,7 +43,7 @@ export default function TabbedCollection({ categories, items }) {
         })}
       </div>
 
-      <CollectionGallery key={active} items={filtered} reveal={false} />
+      <CollectionGallery key={active} items={filtered} reveal={false} imgFit={imgFit} />
     </div>
   )
 }

@@ -42,22 +42,22 @@ const team = [
   },
 ]
 
-const seoTitle = "About GST Concepts | Furniconcepts' Oman Branch, Muscat"
-const seoDescription = 'GST Concepts is Furniconcepts’ branch in Muscat, Oman — multi-brand commercial furniture sourcing across seating, office, and hospital furniture.'
+const seoTitle = 'About GST Concepts, Muscat, Oman'
+const seoDescription = 'GST Concepts is a Muscat-based multi-brand commercial furniture supplier in Oman — sourcing across seating, office, and hospital furniture.'
 
 const overviewSections = [
   {
     question: 'What is GST Concepts?',
     answers: [
-      'GST Concepts is Furniconcepts’ branch operation for the Sultanate of Oman, based in Muscat.',
+      'GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman.',
       'Operating locally under GULF SERVICE AND TRADING, it brings together seating, workplace, and healthcare categories through one commercial relationship instead of functioning like a single-brand showroom.',
     ],
   },
   {
-    question: 'How is GST Concepts related to Furniconcepts?',
+    question: 'Which brands does GST Concepts represent in Oman?',
     answers: [
-      'GST Concepts is Furniconcepts’ own branch in Oman rather than a separate licensee or loosely affiliated reseller. It is the same wider group operating locally for Muscat and Oman-based clients.',
-      'Furniconcepts operates across the UAE, India, and Singapore, and GST Concepts extends that multi-market brand network into Oman through a local project and supply relationship.',
+      'GST Concepts is the authorized regional partner in Oman for five international brands — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare.',
+      'That gives clients one local point of contact for auditorium seating, office furniture, and healthcare furniture, sourced directly from each manufacturer rather than through a general reseller.',
     ],
   },
   {
@@ -71,7 +71,7 @@ const overviewSections = [
     question: 'Where is GST Concepts based, and which markets does it serve?',
     answers: [
       'GST Concepts is based in Muscat, Sultanate of Oman, at PC 112, PO Box 543.',
-      'It supports projects in Oman while also working alongside Furniconcepts’ wider operations in Dubai, India, and Singapore.',
+      'It supports commercial and institutional projects across the Sultanate of Oman, sourcing directly from its partner brands in Italy and beyond.',
     ],
   },
 ]
@@ -131,8 +131,8 @@ const brands = [
 
 const faqs = [
   {
-    question: 'How is GST Concepts related to Furniconcepts?',
-    answer: 'GST Concepts is Furniconcepts’ own branch in Oman, not a separate licensee. It extends the group’s multi-brand commercial furniture network into the Sultanate of Oman.',
+    question: 'Is GST Concepts a single-brand showroom?',
+    answer: 'No. GST Concepts operates under GULF SERVICE AND TRADING as a Muscat-based commercial furniture supplier, coordinating five international brands under one project relationship rather than selling one brand out of a retail showroom.',
   },
   {
     question: 'Which brands does GST Concepts represent?',
@@ -143,12 +143,12 @@ const faqs = [
     answer: 'GST Concepts follows a project-first model, coordinating multiple furniture categories through one relationship instead of requiring clients to manage separate suppliers for each part of a project.',
   },
   {
-    question: 'Is GST Concepts ISO certified?',
-    answer: 'Furniconcepts, the wider group GST Concepts operates under, is presented as an ISO 9001:2015-certified furniture group, and GST Concepts operates as its Muscat branch within that broader organization.',
+    question: 'What quality standards does GST Concepts furniture meet?',
+    answer: 'GST Concepts sources directly from established international manufacturers — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare — each producing to their own certified quality and manufacturing standards.',
   },
   {
     question: 'Where is GST Concepts based?',
-    answer: 'GST Concepts is based in Muscat, Sultanate of Oman at PC 112, PO Box 543, with group support from Furniconcepts operations in Dubai, India, and Singapore.',
+    answer: 'GST Concepts is based in Muscat, Sultanate of Oman at PC 112, PO Box 543, serving commercial and institutional projects across the Sultanate.',
   },
 ]
 
@@ -269,8 +269,8 @@ export default function About() {
             <span>/</span>
             <span>About</span>
           </div>
-          <h1 className="reveal-text hero-title-compact">About GST Concepts — Furniconcepts&apos; Branch in Muscat, Oman</h1>
-          <p>One branch. Five brands. Commercial furniture support for Oman.</p>
+          <h1 className="reveal-text hero-title-compact">About GST Concepts — Muscat, Oman</h1>
+          <p>One company. Five brands. Commercial furniture support for Oman.</p>
         </div>
       </section>
 
@@ -279,7 +279,7 @@ export default function About() {
           <div className="about-flex">
             <div className="about-text reveal">
               <h2 className="section-title">What Is GST Concepts?</h2>
-              <p>GST Concepts is Furniconcepts’ branch operation for the Sultanate of Oman, based in Muscat.</p>
+              <p>GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman.</p>
               <p>Operating locally under GULF SERVICE AND TRADING, it was built for commercial and institutional clients who need a single point of contact across multiple furniture categories rather than a separate supplier for each one.</p>
               <p>That includes auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture across a focused portfolio of international brands.</p>
             </div>
@@ -295,7 +295,7 @@ export default function About() {
           <div className="gst-pillars-head reveal">
             <div className="projects-eyebrow">WHY GST CONCEPTS</div>
             <h2 className="section-title">What Makes GST Concepts Different?</h2>
-            <p>A clearer look at the branch structure, brand access, and project-led approach behind GST Concepts in Oman.</p>
+            <p>A clearer look at the brand access, company structure, and project-led approach behind GST Concepts in Oman.</p>
           </div>
           <div className="gst-pillars-list">
             {overviewSections.map((section, i) => (

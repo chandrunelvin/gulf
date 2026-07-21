@@ -15,6 +15,8 @@ import ProjectSlider from './ProjectSlider.jsx'
  *  - galleryTitle, galleryItems? — gallery section is omitted entirely when galleryItems is not given
  *  - galleryCategories: [{ id, label }] — when given, renders category tabs
  *    and each gallery item is filtered by its `category` field
+ *  - galleryImgFit?: 'cover' (default) | 'contain' — use 'contain' for product cutouts on a
+ *    transparent/white background so they aren't cropped or shown against the dark tile backdrop
  *  - productRange?: { eyebrow?, title?, description?, icon?, categories: [{ name, icon?, items: string[] }] } —
  *    animated-background card grid of manufacturer product categories/model names, rendered right after
  *    the gallery section; `icon` is a Font Awesome class e.g. "fa-chair"
@@ -24,7 +26,7 @@ import ProjectSlider from './ProjectSlider.jsx'
  *    rendered after the brochure section; reuses the same copy for any FAQPage schema the page injects
  *  - cta?: { title, body?, linkLabel, linkTo } — full-bleed closing call-to-action band, always the last section
  */
-export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, galleryItems, galleryCategories, projects, productRange, brochure, cta, faq }) {
+export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, galleryItems, galleryCategories, galleryImgFit, projects, productRange, brochure, cta, faq }) {
   return (
     <SiteLayout active="partners">
       <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')` }}>
@@ -68,9 +70,9 @@ export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, ga
           <div className="container">
             <h2 className="section-title">{galleryTitle}</h2>
             {galleryCategories ? (
-              <TabbedCollection categories={galleryCategories} items={galleryItems} />
+              <TabbedCollection categories={galleryCategories} items={galleryItems} imgFit={galleryImgFit} />
             ) : (
-              <CollectionGallery items={galleryItems} />
+              <CollectionGallery items={galleryItems} imgFit={galleryImgFit} />
             )}
           </div>
         </section>

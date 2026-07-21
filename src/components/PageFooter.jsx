@@ -31,6 +31,7 @@ export default function PageFooter() {
               <li><Link to="/scab">Scab</Link></li>
               <li><Link to="/leadcom">Leadcom</Link></li>
               <li><Link to="/brunonic">Brunonic</Link></li>
+              <li><Link to="/nitrocare">Nitrocare</Link></li>
             </ul>
           </div>
           <div className="footer-col">

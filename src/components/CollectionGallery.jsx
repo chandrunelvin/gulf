@@ -10,7 +10,7 @@ const PAGE_SIZE = 20
  * Only the first 20 items render initially; a "See More" button reveals the
  * next 20 at a time so large collections (100+ products) don't load or paint at once.
  */
-export default function CollectionGallery({ items, reveal = true }) {
+export default function CollectionGallery({ items, reveal = true, imgFit = 'cover' }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
   const visibleItems = items.slice(0, visibleCount)
   const hasMore = visibleCount < items.length
@@ -54,7 +54,7 @@ export default function CollectionGallery({ items, reveal = true }) {
         {visibleItems.map((item, i) => (
           <div
             key={i}
-            className={`collection-item${reveal ? ' reveal' : ''}`}
+            className={`collection-item${reveal ? ' reveal' : ''}${imgFit === 'contain' ? ' collection-item-contain' : ''}`}
             role="button"
             tabIndex={0}
             aria-label="Open gallery image"
