@@ -151,7 +151,7 @@ export default function Brunonic() {
         bg: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
         logo: '/images/brunonicoffice-logo.png',
         logoOriginal: true,
-        title: 'Brunonic Italian Office Furniture | Oman & Singapore Partner: GST Concepts',
+        title: 'Brunonic Italian Office Furniture | Oman Partner: GST Concepts',
         subtitle: 'Workstations, seating & desks, supplied by GST Concepts in Muscat.',
       }}
       breadcrumb={[

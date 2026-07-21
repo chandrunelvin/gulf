@@ -1683,7 +1683,7 @@ section {
     position: relative;
     overflow: hidden;
     padding: 130px 0;
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--dark-2), var(--gold));
     text-align: center;
 }
 
@@ -1692,8 +1692,8 @@ section {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 50% 0%, rgba(28, 192, 183, 0.22), transparent 55%),
-        linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.2));
+        radial-gradient(circle at 50% 0%, rgba(28, 192, 183, 0.3), transparent 55%),
+        linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.15));
 }
 
 .partner-final-cta-inner {

@@ -188,7 +188,7 @@ export default function About() {
               addressLocality: 'Muscat',
               addressCountry: 'Oman',
             },
-            areaServed: ['Oman', 'Singapore'],
+            areaServed: ['Oman'],
             brand: brands.map((brand) => ({
               '@type': 'Brand',
               name: brand.name,
