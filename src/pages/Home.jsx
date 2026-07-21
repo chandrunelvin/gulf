@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import homeCss from '../styles/home.css?inline'
 import useScopedStyle from '../hooks/useScopedStyle.js'
 import ModelViewer from '../components/ModelViewer.jsx'
+import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
 
 const TOTAL = 288
 
@@ -697,13 +698,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* WHATSAPP FLOAT */}
-      <a href="https://wa.me/96897100007" className="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-        <span className="whatsapp-label">WhatsApp</span>
-        <span className="whatsapp-float-icon">
-          <img src="/images/whatsapp-icon.jpeg" alt="WhatsApp" />
-        </span>
-      </a>
+      <WhatsAppFloat />
     </>
   )
 }

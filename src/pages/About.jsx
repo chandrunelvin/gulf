@@ -284,7 +284,7 @@ export default function About() {
               <p>That includes auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture across a focused portfolio of international brands.</p>
             </div>
             <div className="about-image reveal">
-              <img src="/images/teams/Deepak c.jpg" alt="Deepak Dinesh Prabakaran, Director at GST Concepts in Muscat, Oman" />
+              <img src="https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg" alt="Leadcom FIPO LUXE auditorium seating, supplied by GST Concepts in Oman" />
             </div>
           </div>
         </div>

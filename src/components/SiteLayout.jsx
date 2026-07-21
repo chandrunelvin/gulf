@@ -3,6 +3,7 @@ import useScopedStyle from '../hooks/useScopedStyle.js'
 import useScrollReveal from '../hooks/useScrollReveal.js'
 import PageHeader from './PageHeader.jsx'
 import PageFooter from './PageFooter.jsx'
+import WhatsAppFloat from './WhatsAppFloat.jsx'
 
 /**
  * Layout for every Gulf Supply & Services sub-page: mounts the site stylesheet
@@ -17,6 +18,7 @@ export default function SiteLayout({ active, children }) {
       <PageHeader active={active} />
       {children}
       <PageFooter />
+      <WhatsAppFloat />
     </>
   )
 }

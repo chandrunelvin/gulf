@@ -151,7 +151,7 @@ export default function Audia() {
   return (
     <PartnerPage
       hero={{
-        bg: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=1600&q=80',
+        bg: '/images/audiaitalia/Audia_Italia_realizzazione_True_Digital_poltrone_auditorium.webp',
         logo: '/images/audia-logo.svg',
         title: 'Audia Italia Community Seating — Sourced in Oman Through GST Concepts',
         subtitle: 'Auditorium, cinema, theatre & stadium seating, supplied by GST Concepts in Muscat.',

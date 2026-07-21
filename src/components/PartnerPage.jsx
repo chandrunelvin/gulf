@@ -29,7 +29,7 @@ import ProjectSlider from './ProjectSlider.jsx'
 export default function PartnerPage({ hero, breadcrumb, detail, galleryTitle, galleryItems, galleryCategories, galleryImgFit, projects, productRange, brochure, cta, faq }) {
   return (
     <SiteLayout active="partners">
-      <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')` }}>
+      <section className="page-hero" style={{ backgroundImage: `url('${hero.bg}')`, backgroundColor: 'var(--dark-2)' }}>
         <div className="container">
           {breadcrumb && (
             <div className="about-breadcrumb">

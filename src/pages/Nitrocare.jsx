@@ -132,7 +132,7 @@ export default function Nitrocare() {
   return (
     <PartnerPage
       hero={{
-        bg: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1600&q=80',
+        bg: '/images/nitrocare/aesthetic-dermatology.jpg',
         title: 'Nitrocare Hospital & Medical Furniture | Facility Project Supply in Oman',
         subtitle: 'Facility-level hospital and medical furniture, supplied by GST Concepts across Oman.',
       }}
