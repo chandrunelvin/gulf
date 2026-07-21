@@ -65,7 +65,7 @@ if (galleryItems.length > 0) {
                 <i class="fas fa-chevron-left"></i>
             </button>
             <div class="gallery-lightbox-image-wrap">
-                <img class="gallery-lightbox-image" src="" alt="">
+                <img class="gallery-lightbox-image" src="" alt="Selected gallery image preview">
             </div>
             <button class="gallery-lightbox-nav gallery-lightbox-next" type="button" aria-label="Next image">
                 <i class="fas fa-chevron-right"></i>
@@ -159,7 +159,7 @@ if (teamMembers.length > 0) {
                 <i class="fas fa-times"></i>
             </button>
             <div class="team-modal-image">
-                <img class="team-modal-photo" src="" alt="">
+                <img class="team-modal-photo" src="" alt="Selected team member portrait">
             </div>
             <div class="team-modal-copy">
                 <div class="team-modal-role"></div>

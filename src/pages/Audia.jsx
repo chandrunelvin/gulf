@@ -1,5 +1,9 @@
+import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
+
+const seoTitle = 'Audia Italia Seating Supplier in Oman | GST Concepts Muscat'
+const seoDescription = 'Source Audia Italia auditorium, cinema, theatre & stadium seating in Oman through GST Concepts, Muscat.'
 
 const gallery = [
   { src: '/images/audiaitalia/image-5.webp', alt: 'Audia Antea auditorium chair', caption: 'ANTEA' },
@@ -29,15 +33,140 @@ const projects = [
   { src: 'https://images.unsplash.com/photo-1475721027464-585586198cb9?auto=format&fit=crop&w=1400&q=80', title: 'Performing Arts Centre', location: 'Doha, Qatar', desc: 'Custom-coloured auditorium chairs with integrated stage lighting coordination for a premier Gulf performing arts venue.' },
 ]
 
+// Each item is rendered once as a visible question/answer card and reused, verbatim,
+// to build the FAQPage schema below — one canonical answer per fact, not a restated copy.
+const qaItems = [
+  {
+    question: 'Does Audia Italia have a showroom in Muscat?',
+    answer: 'No. Audia Italia manufactures exclusively in Italy and works through regional partners rather than standalone retail showrooms. In Oman, that partner is GST Concepts, Muscat.',
+  },
+  {
+    question: 'What does Audia Italia specialize in?',
+    answer: 'Audia Italia builds around what it calls “Community Seating” — seats designed as part of a broader architectural project rather than sold as standalone furniture. Everything is made in Italy, with the company working alongside architects and designers on individual venues, across auditorium, theatre, cinema, conference, university, VIP stadium, cruise ship, and office furniture, plus acoustic panels (ANTEA, FLECTA, ATENEO, GEMINA, VESTA).',
+  },
+  {
+    question: 'Who supplies auditorium seating in Oman?',
+    answer: 'GST Concepts supplies Audia Italia auditorium seating for venues across Muscat and Oman, alongside Leadcom’s auditorium range.',
+  },
+  {
+    question: 'Who is a cinema seating supplier in Oman?',
+    answer: 'GST Concepts sources Audia Italia cinema seating for cinema and screening room projects in Oman, customized per venue for fire-rated upholstery and acoustic comfort.',
+  },
+  {
+    question: 'Can Audia Italia seating be customized for a specific venue in Oman?',
+    answer: 'Yes. Customization of finish, armrest style, upholstery, and configuration is standard practice for Audia Italia — seat width, tip-up mechanism, row spacing and upholstery are all specified per venue. Project specifications are coordinated through GST Concepts.',
+  },
+  {
+    question: 'How do I get a quote for an Audia Italia project in Oman?',
+    answer: 'Contact GST Concepts in Muscat directly: +968 9710 0007, +968 9806 7601, or sales@gstconcepts.om.',
+  },
+]
+
 export default function Audia() {
+  useEffect(() => {
+    const previousTitle = document.title
+    const metaDescription = document.querySelector('meta[name="description"]')
+    const previousDescription = metaDescription?.getAttribute('content') || ''
+
+    document.title = seoTitle
+    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
+
+    const schemaScripts = [
+      {
+        id: 'audia-org-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'Organization',
+          name: 'GST Concepts',
+          alternateName: 'GST Concepts',
+          parentOrganization: {
+            '@type': 'Organization',
+            name: 'Furniconcepts',
+            url: 'https://www.furniconcepts.com',
+          },
+          sameAs: ['https://www.furniconcepts.com'],
+          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+          telephone: ['+968 9710 0007', '+968 9806 7601'],
+          email: 'sales@gstconcepts.om',
+          areaServed: ['Oman'],
+          brand: {
+            '@type': 'Brand',
+            name: 'Audia Italia',
+            url: 'https://www.audiaitalia.it/en/',
+            location: { '@type': 'PostalAddress', addressLocality: 'Noceto', addressCountry: 'Italy' },
+          },
+        },
+      },
+      {
+        id: 'audia-products-schema',
+        content: [
+          { name: 'Audia Italia Auditorium Seating', category: 'Auditorium Seating' },
+          { name: 'Audia Italia Cinema Seating', category: 'Cinema Seating' },
+        ].map((p) => ({
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: p.name,
+          category: p.category,
+          brand: { '@type': 'Brand', name: 'Audia Italia' },
+          seller: { '@type': 'Organization', name: 'GST Concepts' },
+          areaServed: 'Oman',
+        })),
+      },
+      {
+        id: 'audia-faq-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: qaItems.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: { '@type': 'Answer', text: item.answer },
+          })),
+        },
+      },
+      {
+        id: 'audia-breadcrumb-schema',
+        content: {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
+            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
+            { '@type': 'ListItem', position: 3, name: 'Audia Italia', item: `${window.location.origin}/audia` },
+          ],
+        },
+      },
+    ]
+
+    schemaScripts.forEach(({ id, content }) => {
+      document.getElementById(id)?.remove()
+      const script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.id = id
+      script.text = JSON.stringify(content)
+      document.head.appendChild(script)
+    })
+
+    return () => {
+      document.title = previousTitle
+      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
+      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
+    }
+  }, [])
+
   return (
     <PartnerPage
       hero={{
         bg: 'https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=1600&q=80',
         logo: '/images/audia-logo.svg',
-        title: 'AUDIA',
-        subtitle: 'Auditorium Solutions',
+        title: 'Audia Italia Community Seating — Sourced in Oman Through GST Concepts',
+        subtitle: 'Auditorium, cinema, theatre & stadium seating, supplied by GST Concepts in Muscat.',
       }}
+      breadcrumb={[
+        { label: 'Home', href: '/' },
+        { label: 'Partners', href: '/partners' },
+        { label: 'Audia Italia' },
+      ]}
       detail={{
         title: 'Elevating Education & Performance',
         paragraphs: [
@@ -60,6 +189,17 @@ export default function Audia() {
           </div>
         </div>
       }
+      cta={{
+        title: 'Fitting Out A Venue In Oman?',
+        body: 'Talk to GST Concepts about Audia Italia seating for your project.',
+        linkLabel: 'Contact GST Concepts',
+        linkTo: '/contact',
+      }}
+      faq={{
+        title: 'Audia Italia Seating, Answered',
+        description: 'How Audia Italia seating is sourced, customized, and supplied for venues in Oman.',
+        items: qaItems,
+      }}
     />
   )
 }
