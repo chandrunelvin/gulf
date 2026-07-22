@@ -51,24 +51,26 @@ export default function PageHeader({ active }) {
           <li><Link to="/blog" className={active === 'blog' ? 'active' : ''} onClick={closeNav}>Blog</Link></li>
           <li><Link to="/contact" className={active === 'contact' ? 'active' : ''} onClick={closeNav}>Contact</Link></li>
         </ul>
-        <SiteSearch onNavigate={closeNav} />
-        <Link to="/contact" className="nav-cta">Get a Quote →</Link>
-        <div
-          className={`burger${navOpen ? ' toggle' : ''}`}
-          role="button"
-          tabIndex={0}
-          aria-label="Toggle menu"
-          onClick={() => setNavOpen((v) => !v)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              setNavOpen((v) => !v)
-            }
-          }}
-        >
-          <div className="line1"></div>
-          <div className="line2"></div>
-          <div className="line3"></div>
+        <div className="nav-actions">
+          <SiteSearch onNavigate={closeNav} />
+          <Link to="/contact" className="nav-cta">Get a Quote →</Link>
+          <div
+            className={`burger${navOpen ? ' toggle' : ''}`}
+            role="button"
+            tabIndex={0}
+            aria-label="Toggle menu"
+            onClick={() => setNavOpen((v) => !v)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                setNavOpen((v) => !v)
+              }
+            }}
+          >
+            <div className="line1"></div>
+            <div className="line2"></div>
+            <div className="line3"></div>
+          </div>
         </div>
       </nav>
     </header>

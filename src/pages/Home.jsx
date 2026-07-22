@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import homeCss from '../styles/home.css?inline'
 import useScopedStyle from '../hooks/useScopedStyle.js'
 import ModelViewer from '../components/ModelViewer.jsx'
 import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
-import SiteSearch from '../components/SiteSearch.jsx'
 import ProjectSlider from '../components/ProjectSlider.jsx'
+import PageHeader from '../components/PageHeader.jsx'
 
 const TOTAL = 288
 
@@ -119,9 +119,6 @@ const FADE = 0.03
 export default function Home() {
   useScopedStyle(homeCss)
   const canvasRef = useRef(null)
-  const [scrolled, setScrolled] = useState(false)
-  const [navOpen, setNavOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
   const finalRef = useRef(null)
 
   useEffect(() => {
@@ -311,7 +308,6 @@ export default function Home() {
     }
 
     const onScroll = () => {
-      setScrolled(window.scrollY > 80)
       const el = document.getElementById('scrollContainer')
       if (!el) return
       const r = el.getBoundingClientRect()
@@ -370,17 +366,6 @@ export default function Home() {
     }
   }, [])
 
-  const closeNav = () => {
-    setNavOpen(false)
-    setDropdownOpen(false)
-  }
-  const onPartnersClick = (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault()
-      setDropdownOpen((v) => !v)
-    }
-  }
-
   return (
     <>
       {/* SCROLL PROGRESS */}
@@ -397,50 +382,7 @@ export default function Home() {
       </div>
 
       {/* NAV */}
-      <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
-        <Link to="/" className="logo">
-          <img src="/images/GST logo-footer.jpg" alt="GST Concepts" className="logo-img footer-logo-state" />
-          <img src="/images/GST_logo.png" alt="GST Concepts" className="logo-img sticky-logo-state" />
-        </Link>
-        <ul className={`nav-links${navOpen ? ' nav-active' : ''}`} id="navLinks">
-          <li><Link to="/" onClick={closeNav}>Home</Link></li>
-          <li className={`dropdown${dropdownOpen ? ' active' : ''}`}>
-            <Link to="/partners" onClick={onPartnersClick}>Partners <i className="fas fa-chevron-down"></i></Link>
-            <ul className="dropdown-menu">
-              <li><Link to="/audia" onClick={closeNav}>Audia</Link></li>
-              <li><Link to="/scab" onClick={closeNav}>Scab</Link></li>
-              <li><Link to="/leadcom" onClick={closeNav}>Leadcom</Link></li>
-              <li><Link to="/brunonic" onClick={closeNav}>Brunonic</Link></li>
-              <li><Link to="/nitrocare" onClick={closeNav}>Nitrocare</Link></li>
-            </ul>
-          </li>
-          <li><Link to="/about" onClick={closeNav}>About Us</Link></li>
-          <li><Link to="/collection" onClick={closeNav}>Collection</Link></li>
-          <li><Link to="/blog" onClick={closeNav}>Blog</Link></li>
-          <li><Link to="/contact" onClick={closeNav}>Contact</Link></li>
-        </ul>
-        <SiteSearch onNavigate={closeNav} />
-        <Link to="/contact" className="nav-cta">Get a Quote →</Link>
-        <div
-          className={`burger${navOpen ? ' toggle' : ''}`}
-          id="navBurger"
-          aria-label="Open menu"
-          aria-expanded={navOpen}
-          role="button"
-          tabIndex={0}
-          onClick={() => setNavOpen((v) => !v)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              setNavOpen((v) => !v)
-            }
-          }}
-        >
-          <div className="line1"></div>
-          <div className="line2"></div>
-          <div className="line3"></div>
-        </div>
-      </nav>
+      <PageHeader active="home" />
 
       {/* CANVAS SCROLL */}
       <div id="scrollContainer">

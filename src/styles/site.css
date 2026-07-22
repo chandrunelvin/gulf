@@ -170,11 +170,17 @@ nav {
     color: var(--gold);
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-left: auto;
+}
+
 .nav-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: auto;
     padding: 11px 24px;
     border: 1px solid currentColor;
     background: transparent;
