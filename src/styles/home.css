@@ -190,7 +190,7 @@ nav{
   .mobile-hero{
     display:flex;flex-direction:column;position:relative;
     min-height:100svh;width:100%;overflow:hidden;
-    background:#ffffff;
+    background:#ffffff;padding-top:64px;
   }
   .mobile-hero-stage{position:relative;flex:1 1 auto;min-height:340px;width:100%;}
   .mobile-hero-img{
@@ -233,6 +233,7 @@ nav{
 @media (max-width:480px){
   .mobile-hero-h{font-size:32px;}
   .mobile-hero-stage{min-height:280px;}
+  .mobile-hero{padding-top:60px;}
 }
 
 /* ───────────────────────────── CANVAS SECTION ───────────────────────────── */
