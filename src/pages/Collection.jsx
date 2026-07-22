@@ -11,7 +11,12 @@ export default function Collection() {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80')" }}
       >
         <div className="container">
-          <h1 className="reveal-text">Our Collection</h1>
+          <div className="about-breadcrumb">
+            <Link to="/">Home</Link>
+            <span>/</span>
+            <span>Collection</span>
+          </div>
+          <h1 className="reveal-text hero-title-compact">Our Collection</h1>
           <p>Every Product, Across All Five Brands, In One Place</p>
         </div>
       </section>

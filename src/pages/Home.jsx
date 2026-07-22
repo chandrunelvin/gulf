@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import homeCss from '../styles/home.css?inline'
 import useScopedStyle from '../hooks/useScopedStyle.js'
@@ -8,6 +8,48 @@ import ProjectSlider from '../components/ProjectSlider.jsx'
 import PageHeader from '../components/PageHeader.jsx'
 
 const TOTAL = 288
+
+const mobileHeroSlides = [
+  { src: 'https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg', alt: 'Leadcom FIPO LUXE auditorium seating' },
+  { src: '/images/winner-attendant-chair-removebg-preview.png', alt: 'Nitrocare lounge sofa' },
+  { src: '/images/panora-attendant-chair-removebg-preview.png', alt: 'Nitrocare healthcare recliner' },
+]
+
+function MobileHeroSlider() {
+  const [index, setIndex] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % mobileHeroSlides.length)
+    }, 3200)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <div className="mobile-hero-stage">
+      {mobileHeroSlides.map((s, i) => (
+        <img
+          key={s.src}
+          src={s.src}
+          alt={s.alt}
+          className={`mobile-hero-img${i === index ? ' active' : ''}`}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
+      <div className="mobile-hero-dots">
+        {mobileHeroSlides.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`mobile-hero-dot${i === index ? ' active' : ''}`}
+            aria-label={`Show slide ${i + 1}`}
+            onClick={() => setIndex(i)}
+          ></button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const tickerItems = [
   'GST CONCEPTS', 'BRUNONIC', 'S-CAB', 'LEADCOM', 'NITROCARE',
@@ -384,6 +426,20 @@ export default function Home() {
       {/* NAV */}
       <PageHeader active="home" />
 
+      {/* MOBILE HERO — image-led hero shown on small screens only */}
+      <section className="mobile-hero">
+        <MobileHeroSlider />
+        <div className="mobile-hero-content">
+          <div className="mobile-hero-eyebrow">GST CONCEPTS · MUSCAT, OMAN</div>
+          <h1 className="mobile-hero-h">Design to Deliver <span className="gold">with Style.</span></h1>
+          <p className="mobile-hero-sub">Office, seating &amp; healthcare furniture — five authorized international brands, delivered across Oman.</p>
+          <div className="mobile-hero-btns">
+            <Link to="/collection" className="mobile-hero-btn-pri">Explore Collection</Link>
+            <Link to="/contact" className="mobile-hero-btn-ghost">Get a Quote</Link>
+          </div>
+        </div>
+      </section>
+
       {/* CANVAS SCROLL */}
       <div id="scrollContainer">
         <div id="stickyWrap">
@@ -614,9 +670,9 @@ export default function Home() {
             <Link to="/" className="footer-brand"><img src="/images/GST_logo.png" alt="GST Concepts" className="footer-logo-img" /></Link>
             <p>Elevating workspaces with sophisticated European design across the Sultanate of Oman and the wider Gulf. Five luxury collections under one roof in Muscat.</p>
             <div className="footer-social">
-              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="#" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
-              <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/gstconcepts_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/gst-concepts/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
+              {/* <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a> */}
             </div>
           </div>
           <div className="footer-col">

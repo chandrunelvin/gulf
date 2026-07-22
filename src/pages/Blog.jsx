@@ -9,7 +9,12 @@ export default function Blog() {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80')" }}
       >
         <div className="container">
-          <h1 className="reveal-text">Journal</h1>
+          <div className="about-breadcrumb">
+            <Link to="/">Home</Link>
+            <span>/</span>
+            <span>Blog</span>
+          </div>
+          <h1 className="reveal-text hero-title-compact">Journal</h1>
           <p>Ideas, Projects & Furniture Stories from the Gulf</p>
         </div>
       </section>
