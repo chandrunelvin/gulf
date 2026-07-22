@@ -427,6 +427,27 @@ export default function Home() {
         </div>
       </section>
 
+
+          {/* ABOUT */}
+      <section className="about" id="about">
+        <div className="about-wrap">
+          <div className="about-text">
+            <div className="about-eyebrow">— ABOUT GST CONCEPTS</div>
+            <h2 className="about-h">Design to Deliver <span className="gold">with Style.</span></h2>
+            <div className="about-sep"></div>
+            <p className="about-body">GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman. Operating under GULF SERVICE AND TRADING, it brings together seating, workplace, and healthcare furniture through one commercial relationship instead of a single-brand showroom.</p>
+            <p className="about-body">GST Concepts is the authorized regional partner in Oman for five international brands — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare — covering auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture for commercial and institutional projects across Oman.</p>
+            <Link to="/about" className="about-cta-btn">About Us →</Link>
+          </div>
+          <div className="about-img">
+            <video className="about-video" autoPlay muted loop playsInline aria-label="GST Concepts furniture collection video">
+              <source src="/images/gst-about-us-video.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+
       {/* PROJECTS */}
       <section className="home-projects">
         <div className="home-projects-inner">
@@ -547,29 +568,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section className="about" id="about">
-        <div className="about-wrap">
-          <div className="about-text">
-            <div className="about-eyebrow">— ABOUT GST CONCEPTS</div>
-            <h2 className="about-h">Design to Deliver <span className="gold">with Style.</span></h2>
-            <div className="about-sep"></div>
-            <p className="about-body">GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman. Operating under GULF SERVICE AND TRADING, it brings together seating, workplace, and healthcare furniture through one commercial relationship instead of a single-brand showroom.</p>
-            <p className="about-body">GST Concepts is the authorized regional partner in Oman for five international brands — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare — covering auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture for commercial and institutional projects across Oman.</p>
-            <Link to="/about" className="about-cta-btn">About Us →</Link>
-          </div>
-          <div className="about-img">
-            <video className="about-video" autoPlay muted loop playsInline aria-label="GST Concepts furniture collection video placeholder"></video>
-            <div className="about-video-placeholder" aria-hidden="true">
-              <div className="about-video-card">
-                <div className="about-video-kicker">Collection Film</div>
-                <div className="about-video-title">Video Placeholder</div>
-                <div className="about-video-note">Add your furniture video source here</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* FINAL CTA */}
       <section className="final" ref={finalRef}>

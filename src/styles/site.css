@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Jost:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
 
 :root {
     --cream: #ffffff;
@@ -18,8 +18,10 @@
     --white-60: rgba(255, 255, 255, 0.6);
     --shadow-soft: 0 18px 50px rgba(26, 26, 26, 0.08);
     --shadow-deep: 0 28px 80px rgba(26, 26, 26, 0.12);
-    --serif: 'Cormorant Garamond', serif;
-    --sans: 'Jost', system-ui, -apple-system, sans-serif;
+    --serif: 'Manrope', system-ui, -apple-system, sans-serif;
+    --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+    --font-nav: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-accent: 'Cormorant Garamond', serif;
     --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -153,7 +155,8 @@ nav {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-family: var(--font-nav);
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 2.4px;
     text-transform: uppercase;
@@ -184,7 +187,7 @@ nav {
     padding: 11px 24px;
     border: 1px solid currentColor;
     background: transparent;
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 400;
     letter-spacing: 3.2px;
     text-transform: uppercase;
@@ -334,7 +337,7 @@ nav {
 
 .search-group-label {
     padding: 8px 22px 4px;
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 600;
     letter-spacing: 1.6px;
     text-transform: uppercase;
@@ -503,7 +506,7 @@ section {
     border-radius: 999px;
     background: none;
     font-family: var(--sans);
-    font-size: 12px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -524,7 +527,7 @@ section {
 }
 
 .collection-tab-count {
-    font-size: 10px;
+    font-size:13.5px;
     font-weight: 400;
     opacity: 0.75;
 }
@@ -566,7 +569,7 @@ section {
 }
 
 .blog-tag {
-    font-size: 10px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -578,7 +581,7 @@ section {
 }
 
 .blog-date {
-    font-size: 12px;
+    font-size:13.5px;
     letter-spacing: 1px;
     color: var(--muted);
 }
@@ -591,7 +594,7 @@ section {
 }
 
 .blog-more {
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 3px;
     color: var(--gold);
@@ -760,7 +763,7 @@ section {
 }
 
 .projects-eyebrow {
-    font-size: 10px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 6px;
     text-transform: uppercase;
@@ -885,7 +888,7 @@ section {
     display: flex;
     align-items: flex-start;
     gap: 8px;
-    font-size: 12.5px;
+    font-size:13.5px;
     line-height: 1.5;
     color: var(--muted);
 }
@@ -893,7 +896,7 @@ section {
 .product-range-list li i {
     flex: none;
     margin-top: 6px;
-    font-size: 4px;
+    font-size:13.5px;
     color: var(--gold);
 }
 
@@ -1010,7 +1013,7 @@ section {
 }
 
 .pslider-eyebrow {
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -1138,7 +1141,7 @@ section {
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.72);
     color: var(--gold);
-    font-size: 13px;
+    font-size:13.5px;
     cursor: pointer;
     transition: background 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
 }
@@ -1236,7 +1239,7 @@ section {
     padding: 10px 22px;
     border: 1px solid var(--line-strong);
     border-radius: 999px;
-    font-size: 12px;
+    font-size:13.5px;
     letter-spacing: 1px;
     color: var(--dark);
     transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
@@ -1260,7 +1263,7 @@ section {
 .team-header h2::before {
     content: "— ";
     font-family: var(--sans);
-    font-size: 9px;
+    font-size:13.5px;
     font-weight: 400;
     letter-spacing: 6px;
     color: var(--gold);
@@ -1346,7 +1349,7 @@ section {
     align-items: center;
     justify-content: center;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size:13.5px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--muted);
@@ -1414,7 +1417,7 @@ section {
     align-items: center;
     gap: 10px;
     margin-bottom: 22px;
-    font-size: 11px;
+    font-size:13.5px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.82);
@@ -1664,7 +1667,7 @@ section {
 
 .about-collection-tag {
     font-family: var(--sans);
-    font-size: 12px;
+    font-size:13.5px;
     font-weight: 300;
     color: rgba(26, 26, 26, 0.55);
     line-height: 1.75;
@@ -1674,7 +1677,7 @@ section {
 
 .about-collection-copy {
     font-family: var(--sans);
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 300;
     color: rgba(26, 26, 26, 0.56);
     line-height: 1.8;
@@ -1683,7 +1686,7 @@ section {
 .about-collection-link {
     margin-top: auto;
     padding-top: 16px;
-    font-size: 10px;
+    font-size:13.5px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--about-accent, var(--gold));
@@ -1898,7 +1901,7 @@ section {
 }
 
 .team-role {
-    font-size: 10px;
+    font-size:13.5px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
@@ -1957,7 +1960,7 @@ section {
 }
 
 .team-modal-role {
-    font-size: 10px;
+    font-size:13.5px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
@@ -1989,7 +1992,7 @@ section {
     border: 1px solid rgba(21, 155, 148, 0.18);
     background: rgba(255, 255, 255, 0.56);
     color: var(--dark);
-    font-size: 11px;
+    font-size:13.5px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -2040,7 +2043,7 @@ section {
 }
 
 .info-item h4 {
-    font-size: 10px;
+    font-size:13.5px;
     font-weight: 400;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -2108,7 +2111,7 @@ section {
     background: var(--gold);
     color: #fff;
     border: 1px solid transparent;
-    font-size: 10px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -2147,7 +2150,7 @@ section {
 }
 
 .collection-load-more-count {
-    font-size: 12px;
+    font-size:13.5px;
     letter-spacing: 1px;
     color: var(--muted);
 }
@@ -2304,7 +2307,7 @@ section {
     position: absolute;
     top: 18px;
     left: 18px;
-    font-size: 10px;
+    font-size:13.5px;
     letter-spacing: 3px;
     color: #ffffff;
     background: rgba(21, 155, 148, 0.88);
@@ -2326,7 +2329,7 @@ section {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-size: 10px;
+    font-size:13.5px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--gold);
@@ -2350,7 +2353,7 @@ footer {
 
 .footer-col h4 {
     margin-bottom: 20px;
-    font-size: 11px;
+    font-size:13.5px;
     font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -2406,7 +2409,7 @@ footer {
     text-align: center;
     gap: 10px;
     flex-wrap: wrap;
-    font-size: 11px;
+    font-size:13.5px;
     letter-spacing: 1px;
     color: rgba(26, 26, 26, 0.68);
 }
@@ -2487,7 +2490,7 @@ footer {
     justify-content: space-between;
     gap: 12px;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 13px;
+    font-size:13.5px;
 }
 
 @media (max-width: 1080px) {
