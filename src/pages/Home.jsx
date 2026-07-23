@@ -273,8 +273,6 @@ export default function Home() {
 
     // ---------- LOADER ----------
     const loader = document.getElementById('loader')
-    const loFill = document.getElementById('loFill')
-    const loCount = document.getElementById('loCounter')
     let loaded = 0
     document.body.style.overflow = 'hidden'
 
@@ -286,9 +284,6 @@ export default function Home() {
         if (disposed) return
         frames[i - 1] = img
         loaded++
-        const pct = Math.floor((loaded / TOTAL) * 100)
-        if (loFill) loFill.style.width = pct + '%'
-        if (loCount) loCount.textContent = `Loading collection · ${String(pct).padStart(3, '0')}%`
         if (loaded === TOTAL && loader) {
           setTimeout(() => {
             loader.style.transition = 'opacity 1s ease'
@@ -415,12 +410,7 @@ export default function Home() {
 
       {/* LOADER */}
       <div id="loader">
-        <div className="lo-gst">GST</div>
-        <div className="lo-con">CONCEPTS</div>
-        <div className="lo-line"></div>
-        <div className="lo-tag">Furniture collections. Scroll to explore.</div>
-        <div className="lo-track"><div className="lo-fill" id="loFill"></div></div>
-        <div className="lo-counter" id="loCounter">Loading collection · 000%</div>
+        <img className="lo-truck" src="/images/loading-image.webp" alt="Loading…" />
       </div>
 
       {/* NAV */}
@@ -652,7 +642,6 @@ export default function Home() {
           </div>
           <div className="specs">
             <div className="spec"><div className="spec-l">COLLECTIONS</div><div className="spec-v">5 BRANDS</div></div>
-            <div className="spec"><div className="spec-l">BILLING</div><div className="spec-v">VAT INVOICE INCLUDED</div></div>
             <div className="spec"><div className="spec-l">DELIVERY</div><div className="spec-v">ACROSS OMAN</div></div>
             <div className="spec"><div className="spec-l">SHIPPING</div><div className="spec-v">PAN-GULF</div></div>
           </div>
