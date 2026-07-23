@@ -40,7 +40,10 @@ app.post('/api/contact', async (req, res) => {
     await transporter.sendMail({
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: process.env.CONTACT_TO_EMAIL || process.env.SMTP_FROM_EMAIL,
-      replyTo: email,
+      // No Reply-To: Yahoo's outbound SMTP hard-rejects (550) mail whose
+      // Reply-To domain differs from the authenticated sending domain, which
+      // a customer's own address always would. The sender's email is still
+      // in the body above for manual reply.
       subject: `New website inquiry from ${name}`,
       text: lines,
     })
