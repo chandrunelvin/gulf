@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import homeCss from '../styles/home.css?inline'
 import useScopedStyle from '../hooks/useScopedStyle.js'
@@ -9,48 +9,8 @@ import PageHeader from '../components/PageHeader.jsx'
 import useContactForm from '../hooks/useContactForm.js'
 
 const TOTAL = 288
-
-const mobileHeroSlides = [
-  { src: 'https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg', alt: 'Leadcom FIPO LUXE auditorium seating' },
-  { src: '/images/winner-attendant-chair-removebg-preview.png', alt: 'Nitrocare lounge sofa' },
-  { src: '/images/panora-attendant-chair-removebg-preview.png', alt: 'Nitrocare healthcare recliner' },
-]
-
-function MobileHeroSlider() {
-  const [index, setIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % mobileHeroSlides.length)
-    }, 3200)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <div className="mobile-hero-stage">
-      {mobileHeroSlides.map((s, i) => (
-        <img
-          key={s.src}
-          src={s.src}
-          alt={s.alt}
-          className={`mobile-hero-img${i === index ? ' active' : ''}`}
-          loading={i === 0 ? 'eager' : 'lazy'}
-        />
-      ))}
-      <div className="mobile-hero-dots">
-        {mobileHeroSlides.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            className={`mobile-hero-dot${i === index ? ' active' : ''}`}
-            aria-label={`Show slide ${i + 1}`}
-            onClick={() => setIndex(i)}
-          ></button>
-        ))}
-      </div>
-    </div>
-  )
-}
+const MOBILE_TOTAL = 55
+const MOBILE_BREAKPOINT = '(max-width:768px)'
 
 const tickerItems = [
   'GST CONCEPTS', 'BRUNONIC', 'S-CAB', 'LEADCOM', 'NITROCARE',
@@ -162,6 +122,7 @@ const FADE = 0.03
 export default function Home() {
   useScopedStyle(homeCss)
   const canvasRef = useRef(null)
+  const mobileCanvasRef = useRef(null)
   const finalRef = useRef(null)
   const { status: homeContactStatus, errorMessage: homeContactError, submit: submitHomeContact } = useContactForm()
 
@@ -244,16 +205,21 @@ export default function Home() {
 
   useEffect(() => {
     let disposed = false
-    const canvas = canvasRef.current
+    // Mobile gets its own lighter frame sequence + scroll track (#mobileScrollContainer)
+    // instead of the desktop 288-frame canvas, so it never loads the desktop set.
+    const isMobile = window.matchMedia(MOBILE_BREAKPOINT).matches
+
+    const canvas = isMobile ? mobileCanvasRef.current : canvasRef.current
     const ctx = canvas.getContext('2d')
     let W = (canvas.width = window.innerWidth)
     let H = (canvas.height = window.innerHeight)
-    const frames = new Array(TOTAL)
+    const total = isMobile ? MOBILE_TOTAL : TOTAL
+    const frames = new Array(total)
     let currentFrame = 0
     let rafPending = false
 
     const drawFrame = (idx) => {
-      const img = frames[Math.max(0, Math.min(idx, TOTAL - 1))]
+      const img = frames[Math.max(0, Math.min(idx, total - 1))]
       if (!img || !img.complete) {
         ctx.fillStyle = '#ffffff'
         ctx.fillRect(0, 0, W, H)
@@ -278,15 +244,17 @@ export default function Home() {
     let loaded = 0
     document.body.style.overflow = 'hidden'
 
-    for (let i = 1; i <= TOTAL; i++) {
+    for (let i = 1; i <= total; i++) {
       const img = new Image()
       const n = String(i).padStart(3, '0')
-      img.src = `/gst-concepts-image/ezgif-frame-${n}.jpg`
+      img.src = isMobile
+        ? `/mobile-hero-scroling/ezgif-frame-${n}.png`
+        : `/gst-concepts-image/ezgif-frame-${n}.jpg`
       const done = () => {
         if (disposed) return
         frames[i - 1] = img
         loaded++
-        if (loaded === TOTAL && loader) {
+        if (loaded === total && loader) {
           setTimeout(() => {
             loader.style.transition = 'opacity 1s ease'
             loader.style.opacity = '0'
@@ -302,7 +270,7 @@ export default function Home() {
       img.onerror = done
     }
 
-    // ---------- OVERLAYS ----------
+    // ---------- OVERLAYS (desktop only — mobile has no zone overlays) ----------
     const updateOverlays = (prog) => {
       zones.forEach((z) => {
         const el = document.getElementById(z.id)
@@ -346,15 +314,16 @@ export default function Home() {
       if (progressBar) progressBar.style.width = p * 100 + '%'
     }
 
+    const scrollContainerId = isMobile ? 'mobileScrollContainer' : 'scrollContainer'
     const onScroll = () => {
-      const el = document.getElementById('scrollContainer')
+      const el = document.getElementById(scrollContainerId)
       if (!el) return
       const r = el.getBoundingClientRect()
       const tot = el.offsetHeight - window.innerHeight
       const scrolledPx = Math.max(0, -r.top)
       const prog = Math.max(0, Math.min(1, scrolledPx / tot))
 
-      const fi = Math.min(Math.floor(prog * (TOTAL - 1)), TOTAL - 1)
+      const fi = Math.min(Math.floor(prog * (total - 1)), total - 1)
       if (fi !== currentFrame) {
         currentFrame = fi
         if (!rafPending) {
@@ -365,14 +334,14 @@ export default function Home() {
           })
         }
       }
-      updateOverlays(prog)
+      if (!isMobile) updateOverlays(prog)
       updateProgressBar()
     }
     window.addEventListener('scroll', onScroll, { passive: true })
 
     // initial paint
     drawFrame(0)
-    updateOverlays(0)
+    if (!isMobile) updateOverlays(0)
     updateProgressBar()
 
     // ---------- FINAL CTA 3D PARALLAX ----------
@@ -418,16 +387,11 @@ export default function Home() {
       {/* NAV */}
       <PageHeader active="home" />
 
-      {/* MOBILE HERO — image-led hero shown on small screens only */}
+      {/* MOBILE HERO — scroll-scrubbed canvas hero shown on small screens only, mirrors the desktop CANVAS SCROLL below */}
       <section className="mobile-hero">
-        <MobileHeroSlider />
-        <div className="mobile-hero-content">
-          <div className="mobile-hero-eyebrow">GST CONCEPTS · MUSCAT, OMAN</div>
-          <h1 className="mobile-hero-h">Design to Deliver <span className="gold">with Style.</span></h1>
-          <p className="mobile-hero-sub">Office, seating &amp; healthcare furniture — five authorized international brands, delivered across Oman.</p>
-          <div className="mobile-hero-btns">
-            <Link to="/collection" className="mobile-hero-btn-pri">Explore Collection</Link>
-            <Link to="/contact" className="mobile-hero-btn-ghost">Get a Quote</Link>
+        <div id="mobileScrollContainer">
+          <div id="mobileStickyWrap">
+            <canvas id="mobileCanvas" ref={mobileCanvasRef}></canvas>
           </div>
         </div>
       </section>
