@@ -14,7 +14,7 @@ const team = [
     name: 'Shella',
     role: 'Sales Executive',
     bio: 'Supports clients with product selection, quotations, and day-to-day coordination to match each furniture requirement with the right solution.',
-    img: '/images/teams/shella.png',
+    img: '/images/teams/shella-pic.webp',
   },
   {
     name: 'Sunny',

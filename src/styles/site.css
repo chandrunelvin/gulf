@@ -2813,6 +2813,22 @@ footer {
         flex-direction: column;
         text-align: center;
     }
+
+    .collection-tabs {
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+
+    .collection-tab {
+        gap: 6px;
+        padding: 8px 14px;
+        font-size: 11px;
+        letter-spacing: 1.2px;
+    }
+
+    .collection-tab-count {
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2853,6 +2869,21 @@ footer {
     .hero-logo {
         width: min(140px, 42vw);
         margin-bottom: 20px;
+    }
+
+    .collection-tabs {
+        gap: 6px;
+        margin-bottom: 24px;
+    }
+
+    .collection-tab {
+        padding: 7px 12px;
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .collection-tab-count {
+        font-size: 10px;
     }
 
     .about-detail,
