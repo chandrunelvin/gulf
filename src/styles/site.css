@@ -2125,6 +2125,28 @@ section {
     transform: translateY(-2px);
 }
 
+.cta-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.form-status {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    font-weight: 400;
+    margin-top: 16px;
+}
+
+.form-status-success {
+    color: var(--gold);
+}
+
+.form-status-error {
+    color: #c0392b;
+}
+
 .map {
     padding-top: 90px;
 }

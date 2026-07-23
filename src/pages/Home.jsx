@@ -6,6 +6,7 @@ import ModelViewer from '../components/ModelViewer.jsx'
 import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
 import ProjectSlider from '../components/ProjectSlider.jsx'
 import PageHeader from '../components/PageHeader.jsx'
+import useContactForm from '../hooks/useContactForm.js'
 
 const TOTAL = 288
 
@@ -162,6 +163,7 @@ export default function Home() {
   useScopedStyle(homeCss)
   const canvasRef = useRef(null)
   const finalRef = useRef(null)
+  const { status: homeContactStatus, errorMessage: homeContactError, submit: submitHomeContact } = useContactForm()
 
   useEffect(() => {
     const previousTitle = document.title
@@ -603,12 +605,22 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" required />
-              <input type="email" placeholder="Your Email" required />
-              <input type="text" placeholder="Subject" />
-              <textarea placeholder="Tell us about your project" rows="4" required></textarea>
-              <button type="submit" className="contact-submit">Send Message →</button>
+            <form
+              className="contact-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                submitHomeContact(e.target)
+              }}
+            >
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
+              <input type="text" name="subject" placeholder="Subject" />
+              <textarea name="message" placeholder="Tell us about your project" rows="4" required></textarea>
+              <button type="submit" className="contact-submit" disabled={homeContactStatus === 'sending'}>
+                {homeContactStatus === 'sending' ? 'Sending…' : 'Send Message →'}
+              </button>
+              {homeContactStatus === 'success' && <p className="form-status form-status-success">Thanks — your message has been sent. We'll be in touch shortly.</p>}
+              {homeContactStatus === 'error' && <p className="form-status form-status-error">{homeContactError}</p>}
             </form>
           </div>
         </div>

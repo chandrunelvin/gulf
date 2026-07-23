@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
+import useContactForm from '../hooks/useContactForm.js'
 
 const seoTitle = 'Contact GST Concepts | Furniture Supplier in Muscat, Oman'
 const seoDescription = 'Contact GST Concepts in Muscat, Oman for Audia, Scab, Leadcom, Brunonic and Nitrocare enquiries — auditorium, office, contract and hospital furniture supply.'
@@ -22,6 +23,8 @@ const faqs = [
 ]
 
 export default function Contact() {
+  const { status, errorMessage, submit } = useContactForm()
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')
@@ -135,18 +138,24 @@ export default function Contact() {
               </div>
             </div>
             <div className="contact-form-container reveal">
-              <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+              <form
+                className="contact-form"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  submit(e.target)
+                }}
+              >
                 <div className="form-group">
-                  <input type="text" placeholder="Your Name" required />
+                  <input type="text" name="name" placeholder="Your Name" required />
                 </div>
                 <div className="form-group">
-                  <input type="email" placeholder="Your Email" required />
+                  <input type="email" name="email" placeholder="Your Email" required />
                 </div>
                 <div className="form-group">
-                  <input type="text" placeholder="Company" />
+                  <input type="text" name="company" placeholder="Company" />
                 </div>
                 <div className="form-group">
-                  <select defaultValue="" required>
+                  <select name="brand" defaultValue="" required>
                     <option value="" disabled>Brand of Interest</option>
                     <option value="audia">Audia Italia</option>
                     <option value="scab">Scab Italy (S•CAB)</option>
@@ -157,7 +166,7 @@ export default function Contact() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <select defaultValue="" required>
+                  <select name="projectType" defaultValue="" required>
                     <option value="" disabled>Project Type</option>
                     <option value="auditorium">Auditorium / Theatre</option>
                     <option value="cinema">Cinema Seating</option>
@@ -167,9 +176,13 @@ export default function Contact() {
                   </select>
                 </div>
                 <div className="form-group">
-                  <textarea placeholder="Your Message" rows="6" required></textarea>
+                  <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
                 </div>
-                <button type="submit" className="cta-btn">Send Inquiry <i className="fas fa-paper-plane" style={{ marginLeft: '10px' }}></i></button>
+                <button type="submit" className="cta-btn" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending…' : 'Send Inquiry'} <i className="fas fa-paper-plane" style={{ marginLeft: '10px' }}></i>
+                </button>
+                {status === 'success' && <p className="form-status form-status-success">Thanks — your enquiry has been sent. We'll be in touch shortly.</p>}
+                {status === 'error' && <p className="form-status form-status-error">{errorMessage}</p>}
               </form>
             </div>
           </div>

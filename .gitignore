@@ -9,3 +9,8 @@ dist/
 
 # Logs
 *.log
+
+# Secrets
+.env
+.env.*
+!.env.example
