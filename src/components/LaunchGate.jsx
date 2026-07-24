@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './launchGate.css'
 
-// TESTING: 2-minute countdown from page load. Swap this back to a fixed
+// TESTING: 10-second countdown from page load. Swap this back to a fixed
 // launch date/time before going live, e.g.:
 //   const LAUNCH_TARGET = new Date('2026-07-24T14:00:00+04:00').getTime()
-const LAUNCH_TARGET = Date.now() + 2 * 60 * 1000
+const LAUNCH_TARGET = Date.now() + 10 * 1000
 const SEEN_KEY = 'gst_launch_seen'
 
 const CONFETTI_COLORS = ['#159b94', '#1cc0b7', '#d4a24c', '#f2c879', '#ffffff', '#8a1538']
