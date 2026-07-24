@@ -19,16 +19,34 @@ export default function Blog() {
         </div>
       </section>
 
-      <section className="blog-page coming-soon-section">
+      <section className="blog-page">
         <div className="container">
-          <div className="coming-soon-block reveal">
-            <h2 className="section-title">Coming Soon</h2>
-            <p className="intro-text">
-              We're working on project stories, furniture guides, and design insights from GST Concepts.
-              Check back soon — or get in touch directly for advice on your project.
-            </p>
-            <Link to="/contact" className="cta-btn">Contact GST Concepts</Link>
+          <div className="gst-pillars-head reveal">
+            <div className="projects-eyebrow">JOURNAL</div>
+            <h2 className="section-title">Latest Articles</h2>
+            <p>Guides, project stories, and design insights from GST Concepts.</p>
           </div>
+
+          <Link to="/blog/office-furniture-oman" className="blog-featured reveal">
+            <div className="blog-featured-media">
+              <img
+                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80"
+                alt="Office and workplace furniture fit-out in Oman"
+              />
+            </div>
+            <div className="blog-featured-body">
+              <div className="blog-meta">
+                <span className="blog-tag">Guide</span>
+                <span className="blog-date">24 July 2026</span>
+              </div>
+              <h2 className="blog-featured-title">Office &amp; Workplace Furniture in Oman: A Practical Guide to Specifying Your Fit-Out</h2>
+              <p className="blog-excerpt">
+                How to specify executive desks, open-plan workstations, ergonomic seating, storage, reception,
+                and lounge furniture for a commercial fit-out in Oman.
+              </p>
+              <span className="blog-more">Read Article &rarr;</span>
+            </div>
+          </Link>
         </div>
       </section>
     </SiteLayout>

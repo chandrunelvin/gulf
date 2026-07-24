@@ -12,6 +12,7 @@ import Leadcom from './pages/Leadcom.jsx'
 import Brunonic from './pages/Brunonic.jsx'
 import Nitrocare from './pages/Nitrocare.jsx'
 import Blog from './pages/Blog.jsx'
+import BlogOfficeFurnitureOman from './pages/BlogOfficeFurnitureOman.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/brunonic" element={<Brunonic />} />
         <Route path="/nitrocare" element={<Nitrocare />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/office-furniture-oman" element={<BlogOfficeFurnitureOman />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </>

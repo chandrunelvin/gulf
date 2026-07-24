@@ -211,8 +211,15 @@ export default function Home() {
 
     const canvas = isMobile ? mobileCanvasRef.current : canvasRef.current
     const ctx = canvas.getContext('2d')
-    let W = (canvas.width = window.innerWidth)
-    let H = (canvas.height = window.innerHeight)
+    // Size the canvas off its own rendered box (not window.innerHeight) so it always
+    // matches the sticky wrap's CSS height (100svh) — on real mobile browsers
+    // window.innerHeight can diverge from svh as the address bar collapses, which
+    // previously left the drawn frame shorter than its box and exposed the
+    // background underneath as a white gap.
+    const canvasBox = () => canvas.getBoundingClientRect()
+    let box = canvasBox()
+    let W = (canvas.width = box.width)
+    let H = (canvas.height = box.height)
     const total = isMobile ? MOBILE_TOTAL : TOTAL
     const frames = new Array(total)
     let currentFrame = 0
@@ -220,9 +227,9 @@ export default function Home() {
 
     const drawFrame = (idx) => {
       const img = frames[Math.max(0, Math.min(idx, total - 1))]
-      if (!img || !img.complete) {
-        ctx.fillStyle = '#ffffff'
-        ctx.fillRect(0, 0, W, H)
+      if (!img || !img.complete || !img.naturalWidth) {
+        // Frame missing/failed to load — keep whatever is already painted
+        // rather than flashing the canvas to blank white.
         return
       }
       const s = Math.max(W / img.naturalWidth, H / img.naturalHeight)
@@ -233,8 +240,9 @@ export default function Home() {
     }
 
     const onResize = () => {
-      W = canvas.width = window.innerWidth
-      H = canvas.height = window.innerHeight
+      box = canvasBox()
+      W = canvas.width = box.width
+      H = canvas.height = box.height
       drawFrame(currentFrame)
     }
     window.addEventListener('resize', onResize)
@@ -319,7 +327,7 @@ export default function Home() {
       const el = document.getElementById(scrollContainerId)
       if (!el) return
       const r = el.getBoundingClientRect()
-      const tot = el.offsetHeight - window.innerHeight
+      const tot = el.offsetHeight - box.height
       const scrolledPx = Math.max(0, -r.top)
       const prog = Math.max(0, Math.min(1, scrolledPx / tot))
 
