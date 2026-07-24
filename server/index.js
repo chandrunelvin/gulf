@@ -25,6 +25,8 @@ app.post('/api/contact', async (req, res) => {
   }
 
   const lines = [
+    'This message was sent from the GST Concepts website contact form.',
+    '',
     `Name: ${name}`,
     `Email: ${email}`,
     company && `Company: ${company}`,
@@ -44,7 +46,7 @@ app.post('/api/contact', async (req, res) => {
       // Reply-To domain differs from the authenticated sending domain, which
       // a customer's own address always would. The sender's email is still
       // in the body above for manual reply.
-      subject: `New website inquiry from ${name}`,
+      subject: `[GST Concepts Website] New Inquiry from ${name}`,
       text: lines,
     })
     res.json({ ok: true })

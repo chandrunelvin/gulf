@@ -13,7 +13,6 @@ import Brunonic from './pages/Brunonic.jsx'
 import Nitrocare from './pages/Nitrocare.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogOfficeFurnitureOman from './pages/BlogOfficeFurnitureOman.jsx'
-import LaunchGate from './components/LaunchGate.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -26,7 +25,6 @@ function ScrollToTop() {
 export default function App() {
   return (
     <>
-      <LaunchGate />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
