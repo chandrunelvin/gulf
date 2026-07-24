@@ -5,10 +5,22 @@ import ModelViewer from '../components/ModelViewer.jsx'
 
 const team = [
   {
+    name: 'Hamed',
+    role: 'Managing Director',
+    bio: 'Sets the strategic direction for GST Concepts, overseeing brand partnerships, major projects, and the company’s overall growth across Oman.',
+    img: '/images/teams/hamed-gst.png',
+  },
+  {
     name: 'Deepak Dinesh Prabakaran',
     role: 'Director',
     bio: 'Leads GST Concepts with a focus on premium furniture collections, client relationships, and long-term commercial growth across Oman and the Gulf.',
     img: '/images/teams/Deepak c.jpg',
+  },
+  {
+    name: 'Dharshan',
+    role: 'Sales Manager',
+    bio: 'Supports clients with product selection, quotations, and day-to-day coordination to match each furniture requirement with the right solution.',
+    img: '/images/teams/Dharshan c.jpg',
   },
   {
     name: 'Shella',

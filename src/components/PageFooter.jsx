@@ -10,9 +10,10 @@ export default function PageFooter() {
             <div className="footer-logo">GULF <span>SUPPLY AND SERVICES</span></div>
             <p>Elevating workspaces with sophisticated European design in the IMEA region. We provide functional and elegant furniture solutions for modern offices.</p>
             <div className="social-links">
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-linkedin"></i></a>
-              <a href="#"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/gstconcepts_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
+              <a href="https://www.linkedin.com/company/gst-concepts/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin"></i></a>
+              <a href="https://www.facebook.com/profile.php?id=61590278432514" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
+              <a href="https://www.youtube.com/@GSTConcepts" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fab fa-youtube"></i></a>
             </div>
           </div>
           <div className="footer-col">

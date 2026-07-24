@@ -21,7 +21,7 @@ const tickerItems = [
 ]
 
 const projects = [
-  { src: '/project/Amity-School-Qusais-project.jpeg', title: 'Amity School Qusais', location: 'Dubai, UAE', desc: 'Classroom and campus furniture supplied and installed across the school, delivered to meet education-sector durability and safety standards.' },
+  { src: '/project/Amity-School-Qusais-project.jpeg', title: 'Amity School Qusais', location: 'Oman', desc: 'Classroom and campus furniture supplied and installed across the school, delivered to meet education-sector durability and safety standards.' },
   { src: '/project/tamayez-project.jpeg', title: 'SOS, Tamayez Architect', location: 'Oil & Gas · Muscat, Oman', desc: 'Furniture supply and installation delivered with Tamayez Architect for an oil & gas sector fit-out in Muscat.' },
   { src: '/project/telescopic-project.jpg', title: 'Telescopic Seating', location: 'Oman', desc: 'Telescopic retractable seating supplied and installed for a multi-purpose venue in Oman.' },
 ]
@@ -455,7 +455,7 @@ export default function Home() {
             <div className="about-eyebrow">— ABOUT GST CONCEPTS</div>
             <h2 className="about-h">Design to Deliver <span className="gold">with Style.</span></h2>
             <div className="about-sep"></div>
-            <p className="about-body">GST Concepts is a Muscat-based commercial furniture supplier serving the Sultanate of Oman. Operating under GULF SERVICE AND TRADING, it brings together seating, workplace, and healthcare furniture through one commercial relationship instead of a single-brand showroom.</p>
+            <p className="about-body">GST Concepts is a commercial furniture supplier serving the Sultanate of Oman, bringing together seating, workplace, and healthcare furniture through one relationship instead of a single-brand showroom.</p>
             <p className="about-body">GST Concepts is the authorized regional partner in Oman for five international brands — Leadcom, Audia Italia, Scab, Brunonic, and Nitrocare — covering auditorium and cinema seating, office and workplace furniture, and hospital and healthcare furniture for commercial and institutional projects across Oman.</p>
             <Link to="/about" className="about-cta-btn">About Us →</Link>
           </div>
