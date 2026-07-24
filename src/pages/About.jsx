@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
 
+const founder = {
+  name: 'Hamed',
+  role: 'Founder',
+  bio: 'Hamed founded GST Concepts to bring a project-first approach to commercial furniture in Oman — coordinating seating, workplace, and healthcare furniture through a single relationship instead of a single-brand showroom. He sets the strategic direction for the company, overseeing brand partnerships, major projects, and its overall growth across Oman.',
+  img: '/images/teams/hamed-gst.png',
+}
+
 const team = [
-  {
-    name: 'Hamed',
-    role: 'Managing Director',
-    bio: 'Sets the strategic direction for GST Concepts, overseeing brand partnerships, major projects, and the company’s overall growth across Oman.',
-    img: '/images/teams/hamed-gst.png',
-  },
   {
     name: 'Deepak Dinesh Prabakaran',
     role: 'Director',
@@ -303,6 +304,8 @@ export default function About() {
         </div>
       </section>
 
+     
+
       <section className="gst-pillars-section">
         <div className="container">
           <div className="gst-pillars-head reveal">
@@ -326,6 +329,23 @@ export default function About() {
         </div>
       </section>
 
+
+      <section className="about-detail">
+        <div className="container">
+          <div className="about-flex founder-flex">
+            <div className="about-text reveal">
+              <div className="projects-eyebrow">FOUNDER</div>
+              <h2 className="section-title">Meet Our Founder</h2>
+              <p>{founder.bio}</p>
+              <p style={{ marginTop: 20, fontWeight: 500, color: 'var(--dark)' }}>{founder.name} — {founder.role}, GST Concepts</p>
+            </div>
+            <div className="about-image founder-image reveal">
+              <img src={founder.img} alt={`${founder.name}, Founder of GST Concepts`} />
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* "The GST Concepts Collection" brand grid — hidden per request, kept for later.
       <section className="about-detail">
         <div className="container">
           <div className="team-header reveal">
@@ -354,7 +374,9 @@ export default function About() {
           </div>
         </div>
       </section>
+      */}
 
+      {/* "Who Leads GST Concepts?" team section — hidden per request, kept for later.
       <section className="team">
         <div className="container">
           <div className="team-header reveal">
@@ -389,6 +411,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      */}
 
       <section className="values faq-section">
         <div className="container">
