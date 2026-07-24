@@ -21,7 +21,7 @@ const tickerItems = [
 ]
 
 const projects = [
-  { src: '/project/Amity-School-Qusais-project.jpeg', title: 'Amity School Qusais', location: 'Oman', desc: 'Classroom and campus furniture supplied and installed across the school, delivered to meet education-sector durability and safety standards.' },
+  { src: '/project/Amity-School-Qusais-project.jpeg', title: 'Amity School', location: 'Oman', desc: 'Classroom and campus furniture supplied and installed across the school, delivered to meet education-sector durability and safety standards.' },
   { src: '/project/tamayez-project.jpeg', title: 'SOS, Tamayez Architect', location: 'Oil & Gas · Muscat, Oman', desc: 'Furniture supply and installation delivered with Tamayez Architect for an oil & gas sector fit-out in Muscat.' },
   { src: '/project/telescopic-project.jpg', title: 'Telescopic Seating', location: 'Oman', desc: 'Telescopic retractable seating supplied and installed for a multi-purpose venue in Oman.' },
 ]

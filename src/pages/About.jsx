@@ -21,6 +21,7 @@ const team = [
     role: 'Sales Manager',
     bio: 'Supports clients with product selection, quotations, and day-to-day coordination to match each furniture requirement with the right solution.',
     img: '/images/teams/Dharshan c.jpg',
+    linkedin: 'https://www.linkedin.com/in/dharshan-dc/',
   },
   {
     name: 'Shella',
@@ -432,10 +433,17 @@ export default function About() {
               <div className="team-modal-role">{member.role}</div>
               <h3 className="team-modal-name">{member.name}</h3>
               <p className="team-modal-bio">{member.bio}</p>
-              <div className="team-modal-linkedin">
-                <i className="fab fa-linkedin"></i>
-                <span>LinkedIn</span>
-              </div>
+              {member.linkedin ? (
+                <a className="team-modal-linkedin" href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </a>
+              ) : (
+                <div className="team-modal-linkedin">
+                  <i className="fab fa-linkedin"></i>
+                  <span>LinkedIn</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
