@@ -4,9 +4,12 @@ import SiteLayout from '../components/SiteLayout.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
 
 const founder = {
-  name: 'Hamed',
+  name: 'Hamed Al Harassi',
   role: 'Founder',
-  bio: 'Hamed founded GST Concepts to bring a project-first approach to commercial furniture in Oman — coordinating seating, workplace, and healthcare furniture through a single relationship instead of a single-brand showroom. He sets the strategic direction for the company, overseeing brand partnerships, major projects, and its overall growth across Oman.',
+  bio: [
+    'GST Concepts was founded with a singular vision: to elevate Oman’s commercial, hospitality, and healthcare sectors by delivering world-class, purpose-built interior solutions. We bridge the gap between global innovation and local execution, ensuring that every project we touch is optimized for comfort, functionality, and longevity.',
+    'As an Omani company, we are deeply committed to contributing to the nation’s growth by transforming environments where people work, heal, and connect. We look forward to partnering with you to bring your vision to life.',
+  ],
   img: '/images/teams/hamed-gst.png',
 }
 
@@ -336,8 +339,10 @@ export default function About() {
             <div className="about-text reveal">
               <div className="projects-eyebrow">FOUNDER</div>
               <h2 className="section-title">Meet Our Founder</h2>
-              <p>{founder.bio}</p>
-              <p style={{ marginTop: 20, fontWeight: 500, color: 'var(--dark)' }}>{founder.name} — {founder.role}, GST Concepts</p>
+              {founder.bio.map((paragraph) => (
+                <p key={paragraph} style={{ marginTop: 12 }}>{paragraph}</p>
+              ))}
+              <p style={{ marginTop: 20, fontWeight: 500, color: 'var(--dark)' }}>{founder.name}<br />{founder.role}, GST Concepts</p>
             </div>
             <div className="about-image founder-image reveal">
               <img src={founder.img} alt={`${founder.name}, Founder of GST Concepts`} />

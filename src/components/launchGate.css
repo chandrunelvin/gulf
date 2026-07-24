@@ -1,0 +1,191 @@
+.launch-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+}
+
+.launch-gate-bg {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(21, 155, 148, 0.22), transparent 45%),
+        radial-gradient(circle at 82% 78%, rgba(28, 192, 183, 0.18), transparent 50%),
+        linear-gradient(160deg, #0e0c09 0%, #14201f 55%, #0e0c09 100%);
+}
+
+.launch-confetti-field {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.launch-confetti-piece {
+    position: absolute;
+    top: -5%;
+    border-radius: 1px;
+    opacity: 0.95;
+    animation-name: launchConfettiFall;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation-fill-mode: forwards;
+}
+
+@keyframes launchConfettiFall {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--drift), 115vh) rotate(var(--rotate));
+        opacity: 0.85;
+    }
+}
+
+.launch-gate-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 640px;
+    width: 100%;
+    padding: 32px;
+    animation: launchGateIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes launchGateIn {
+    0% { opacity: 0; transform: translateY(22px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.launch-gate-logo {
+    height: 56px;
+    width: auto;
+    margin: 0 auto 36px;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+}
+
+.launch-gate-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #1cc0b7;
+    margin-bottom: 18px;
+}
+
+.launch-gate-title {
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: rgba(255, 255, 255, 0.94);
+    margin-bottom: 18px;
+}
+
+.launch-gate-title span {
+    font-style: italic;
+    font-weight: 600;
+    color: #1cc0b7;
+}
+
+.launch-gate-sub {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 40px;
+}
+
+.launch-gate-clock {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 14px;
+}
+
+.launch-gate-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+}
+
+.launch-gate-num {
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-size: clamp(30px, 5vw, 46px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    background: rgba(21, 155, 148, 0.14);
+    border: 1px solid rgba(21, 155, 148, 0.4);
+    border-radius: 10px;
+    padding: 16px 10px;
+    min-width: 64px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.launch-gate-unit-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 10px;
+}
+
+.launch-gate-colon {
+    color: #1cc0b7;
+    font-weight: 700;
+    font-size: 26px;
+    margin-top: 16px;
+}
+
+.launch-gate-emoji {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 20px;
+    animation: launchEmojiBounce 1.4s ease-in-out infinite;
+}
+
+@keyframes launchEmojiBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.launch-gate-enter {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(90deg, #159b94, #1cc0b7);
+    color: #fff;
+    padding: 16px 40px;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 16px 40px rgba(21, 155, 148, 0.35);
+}
+
+.launch-gate-enter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 50px rgba(21, 155, 148, 0.5);
+}
+
+@media (max-width: 640px) {
+    .launch-gate-content { padding: 24px; }
+    .launch-gate-logo { height: 42px; margin-bottom: 26px; }
+    .launch-gate-clock { gap: 8px; }
+    .launch-gate-unit { min-width: 52px; }
+    .launch-gate-num { min-width: 52px; padding: 12px 6px; font-size: 24px; }
+    .launch-gate-colon { font-size: 18px; margin-top: 10px; }
+}
