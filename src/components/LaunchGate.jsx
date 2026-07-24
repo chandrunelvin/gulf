@@ -6,22 +6,15 @@ import './launchGate.css'
 //   const LAUNCH_TARGET = new Date('2026-07-24T14:00:00+04:00').getTime()
 const LAUNCH_TARGET = Date.now() + 10 * 1000
 const SEEN_KEY = 'gst_launch_seen'
+const CELEBRATION_MS = 2000
 
 const CONFETTI_COLORS = ['#159b94', '#1cc0b7', '#d4a24c', '#f2c879', '#ffffff', '#8a1538']
 
 function getTimeLeft() {
   const diff = LAUNCH_TARGET - Date.now()
-  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, done: true }
-  return {
-    days: Math.floor(diff / 86400000),
-    hours: Math.floor((diff / 3600000) % 24),
-    minutes: Math.floor((diff / 60000) % 60),
-    seconds: Math.floor((diff / 1000) % 60),
-    done: false,
-  }
+  if (diff <= 0) return { seconds: 0, done: true }
+  return { seconds: Math.ceil(diff / 1000), done: false }
 }
-
-const pad = (n) => String(n).padStart(2, '0')
 
 function makeConfetti() {
   return Array.from({ length: 80 }, (_, i) => ({
@@ -59,15 +52,19 @@ export default function LaunchGate() {
   }, [phase])
 
   useEffect(() => {
+    if (phase !== 'celebrating') return
+    const id = setTimeout(() => {
+      window.localStorage.setItem(SEEN_KEY, '1')
+      setPhase('entered')
+    }, CELEBRATION_MS)
+    return () => clearTimeout(id)
+  }, [phase])
+
+  useEffect(() => {
     const gateOpen = phase === 'counting' || phase === 'celebrating'
     document.body.style.overflow = gateOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [phase])
-
-  const enterSite = () => {
-    window.localStorage.setItem(SEEN_KEY, '1')
-    setPhase('entered')
-  }
 
   if (phase === 'entered') return null
 
@@ -96,50 +93,35 @@ export default function LaunchGate() {
         </div>
       )}
 
-      <div className="launch-gate-content">
-        <img src="/images/GST_logo.png" alt="GST Concepts" className="launch-gate-logo" />
-
-        {phase === 'counting' && (
-          <>
-            <div className="launch-gate-eyebrow">Design To Deliver With Style</div>
-            <h1 className="launch-gate-title">
-              We're <span>Launching</span> Soon
-            </h1>
-            <p className="launch-gate-sub">The new GST Concepts website goes live today at 2:00 PM.</p>
+      <div className="launch-gate-layout">
+        <div className="launch-gate-top">
+          {phase === 'counting' && (
             <div className="launch-gate-clock">
               <div className="launch-gate-unit">
-                <span className="launch-gate-num">{pad(timeLeft.days)}</span>
-                <span className="launch-gate-unit-label">Days</span>
-              </div>
-              <span className="launch-gate-colon">:</span>
-              <div className="launch-gate-unit">
-                <span className="launch-gate-num">{pad(timeLeft.hours)}</span>
-                <span className="launch-gate-unit-label">Hours</span>
-              </div>
-              <span className="launch-gate-colon">:</span>
-              <div className="launch-gate-unit">
-                <span className="launch-gate-num">{pad(timeLeft.minutes)}</span>
-                <span className="launch-gate-unit-label">Minutes</span>
-              </div>
-              <span className="launch-gate-colon">:</span>
-              <div className="launch-gate-unit">
-                <span className="launch-gate-num">{pad(timeLeft.seconds)}</span>
+                <span className="launch-gate-num">{timeLeft.seconds}</span>
                 <span className="launch-gate-unit-label">Seconds</span>
               </div>
             </div>
-          </>
-        )}
+          )}
 
-        {phase === 'celebrating' && (
-          <>
-            <div className="launch-gate-emoji">🎉</div>
-            <h1 className="launch-gate-title">We're <span>Live!</span></h1>
-            <p className="launch-gate-sub">The new GST Concepts website has officially launched. Welcome in.</p>
-            <button type="button" className="launch-gate-enter" onClick={enterSite}>
-              Enter The Site
-            </button>
-          </>
-        )}
+          {phase === 'celebrating' && (
+            <div className="launch-gate-live">
+              <div className="launch-gate-emoji">🎉</div>
+              <h1 className="launch-gate-title">We're <span>Live!</span></h1>
+            </div>
+          )}
+        </div>
+
+        <div className="launch-gate-bottom">
+          <img src="/images/GST_logo.png" alt="GST Concepts" className="launch-gate-logo" />
+          <div className="launch-gate-eyebrow">Design To Deliver With Style</div>
+          {phase === 'counting' && (
+            <p className="launch-gate-sub">The new GST Concepts website goes live.</p>
+          )}
+          {phase === 'celebrating' && (
+            <p className="launch-gate-sub">The new GST Concepts website has officially launched. Taking you in…</p>
+          )}
+        </div>
       </div>
     </div>
   )
