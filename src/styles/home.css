@@ -192,8 +192,12 @@ nav{
 .mobile-hero{display:none;}
 @media (max-width:768px){
   .mobile-hero{display:block;position:relative;width:100%;}
-  #mobileScrollContainer{height:300svh;position:relative;background:var(--cream);}
-  #mobileStickyWrap{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--cream);}
+  /* dvh (not svh) so the hero keeps filling the real visible viewport as the
+     mobile browser's address bar auto-hides/shows during scroll — svh is
+     pinned to the smallest possible viewport and left a white gap below the
+     pinned hero once the toolbar collapsed and the screen grew taller than it. */
+  #mobileScrollContainer{height:300vh;height:300dvh;position:relative;background:var(--cream);}
+  #mobileStickyWrap{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:var(--cream);}
   #mobileCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 }
 
