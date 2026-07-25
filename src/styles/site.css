@@ -771,6 +771,41 @@ section {
     margin-bottom: 16px;
 }
 
+.founder-name-type {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    font-family: var(--serif);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--dark);
+    border-right: 3px solid var(--gold);
+    width: 0;
+}
+
+.founder-name-wrap.reveal-active .founder-name-type {
+    animation:
+        founder-type 1.6s steps(17, end) forwards,
+        founder-blink 0.75s step-end 3,
+        founder-caret-hide 0.1s linear 2.25s forwards;
+}
+
+@keyframes founder-type {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes founder-blink {
+    50% { border-color: transparent; }
+}
+
+@keyframes founder-caret-hide {
+    to { border-color: transparent; }
+}
+
 .product-range-section {
     position: relative;
     overflow: hidden;
@@ -2450,7 +2485,7 @@ footer {
 .gallery-lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(8, 10, 12, 0.9);
+    background: rgba(21, 155, 148, 0.94);
     display: none;
     align-items: center;
     justify-content: center;
@@ -2471,7 +2506,7 @@ footer {
 
 .gallery-lightbox-image-wrap {
     overflow: hidden;
-    background: #111;
+    background: var(--gold);
 }
 
 .gallery-lightbox-image {

@@ -342,7 +342,11 @@ export default function About() {
               {founder.bio.map((paragraph) => (
                 <p key={paragraph} style={{ marginTop: 12 }}>{paragraph}</p>
               ))}
-              <p style={{ marginTop: 20, fontWeight: 500, color: 'var(--dark)' }}>{founder.name}<br />{founder.role}, GST Concepts</p>
+              <p className="founder-name-wrap reveal" style={{ marginTop: 20 }}>
+                <span className="founder-name-type">{founder.name}</span>
+                <br />
+                <span style={{ fontWeight: 500, color: 'var(--dark)' }}>{founder.role}, GST Concepts</span>
+              </p>
             </div>
             <div className="about-image founder-image reveal">
               <img src={founder.img} alt={`${founder.name}, Founder of GST Concepts`} />
