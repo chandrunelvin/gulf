@@ -119,8 +119,8 @@ nav {
 .logo::before {
     content: "";
     display: block;
-    width: 176px;
-    height: 52px;
+    width: 204px;
+    height: 60px;
     background: url('/images/GST_logo.png') center / contain no-repeat;
 }
 
@@ -2858,8 +2858,8 @@ footer {
     }
 
     .logo::before {
-        width: 140px;
-        height: 42px;
+        width: 162px;
+        height: 48px;
     }
 
     .footer-logo::before {
@@ -2920,8 +2920,8 @@ footer {
     }
 
     .logo::before {
-        width: 120px;
-        height: 36px;
+        width: 138px;
+        height: 41px;
     }
 
     .burger {
@@ -3142,6 +3142,7 @@ footer {
     box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35), 0 4px 10px rgba(0, 0, 0, 0.18);
     background: #25D366;
     transition: box-shadow 0.3s var(--ease);
+    animation: waShake 1.2s ease-in-out infinite;
 }
 
 .whatsapp-float img {
@@ -3192,6 +3193,19 @@ footer {
     }
 }
 
+@keyframes waShake {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-14deg); }
+    20% { transform: rotate(12deg); }
+    30% { transform: rotate(-10deg); }
+    40% { transform: rotate(8deg); }
+    50% { transform: rotate(-6deg); }
+    60% { transform: rotate(4deg); }
+    70% { transform: rotate(-3deg); }
+    80% { transform: rotate(2deg); }
+    90% { transform: rotate(-1deg); }
+}
+
 @media (max-width: 768px) {
     .whatsapp-float {
         bottom: 18px;
@@ -3199,8 +3213,8 @@ footer {
     }
 
     .whatsapp-float-icon {
-        width: 50px;
-        height: 50px;
+        width: 68px;
+        height: 68px;
     }
 }
 
@@ -3211,7 +3225,7 @@ footer {
     }
 
     .whatsapp-float-icon {
-        width: 46px;
-        height: 46px;
+        width: 60px;
+        height: 60px;
     }
 }
