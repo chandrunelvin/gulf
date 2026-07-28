@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Audia Italia Seating Supplier in Oman | GST Concepts Muscat'
 const seoDescription = 'Source Audia Italia auditorium, cinema, theatre & stadium seating in Oman through GST Concepts, Muscat.'
@@ -58,6 +59,8 @@ const qaItems = [
 ]
 
 export default function Audia() {
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/audia', image: '/images/audiaitalia/image-5.webp' })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Brunonic Office Furniture Dealer in Oman | GST Concepts'
 const seoDescription = 'GST Concepts - workstations, seating & desks in Muscat & Oman.'
@@ -51,6 +52,8 @@ const qaItems = [
 ]
 
 export default function Brunonic() {
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/brunonic' })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')

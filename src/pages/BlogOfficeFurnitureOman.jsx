@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Office & Workplace Furniture in Oman: A Guide to Specifying Your Fit-Out | GST Concepts'
 const seoDescription = 'A practical guide to specifying executive desks, workstations, ergonomic seating, storage, reception, and lounge furniture for an office fit-out in Oman.'
@@ -130,6 +131,14 @@ const faqs = [
 ]
 
 export default function BlogOfficeFurnitureOman() {
+  useSeoMeta({
+    title: seoTitle,
+    description: seoDescription,
+    path: '/blog/office-furniture-oman',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
+    type: 'article',
+  })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import useContactForm from '../hooks/useContactForm.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Contact GST Concepts | Furniture Supplier in Muscat, Oman'
 const seoDescription = 'Contact GST Concepts in Muscat, Oman for Audia, Scab, Leadcom, Brunonic and Nitrocare enquiries — auditorium, office, contract and hospital furniture supply.'
@@ -24,6 +25,8 @@ const faqs = [
 
 export default function Contact() {
   const { status, errorMessage, submit } = useContactForm()
+
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/contact' })
 
   useEffect(() => {
     const previousTitle = document.title

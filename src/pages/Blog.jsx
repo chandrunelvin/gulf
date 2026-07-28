@@ -1,7 +1,20 @@
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
+
+const seoTitle = 'Journal | Furniture Guides & Project Stories | GST Concepts'
+const seoDescription = 'GST Concepts journal — guides, project stories, and design insights on office, auditorium, and hospital furniture fit-outs in Oman.'
 
 export default function Blog() {
+  useDocumentMeta(seoTitle, seoDescription)
+  useSeoMeta({
+    title: seoTitle,
+    description: seoDescription,
+    path: '/blog',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
+  })
+
   return (
     <SiteLayout active="blog">
       <section

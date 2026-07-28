@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import { scabCategories, scabProducts } from '../data/scabProducts.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Scab Italy Contract Furniture Supplier Oman | GST Concepts'
 const seoDescription = 'GST Concepts supplies S•CAB (Scab Italy) contract and workspace furniture for commercial projects in Muscat and Oman — bulk supply & installation.'
@@ -42,6 +43,8 @@ const qaItems = [
 ]
 
 export default function Scab() {
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/scab' })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')

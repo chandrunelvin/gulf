@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PartnerPage from '../components/PartnerPage.jsx'
 import { nitrocareProducts } from '../data/nitrocareProducts.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Nitrocare Hospital Furniture Supplier Oman | GST Concepts'
 const seoDescription = 'GST Concepts supplies Nitrocare hospital beds, examination furniture & patient seating for healthcare facility projects in Muscat and Oman.'
@@ -43,6 +44,8 @@ const qaItems = [
 ]
 
 export default function Nitrocare() {
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/nitrocare' })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')

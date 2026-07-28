@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const founder = {
   name: 'Hamed Al Harassi',
@@ -178,6 +179,8 @@ export default function About() {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/about', image: '/images/teams/hamed-gst.png' })
 
   useEffect(() => {
     const previousTitle = document.title

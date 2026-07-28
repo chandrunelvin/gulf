@@ -7,6 +7,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
 import ProjectSlider from '../components/ProjectSlider.jsx'
 import PageHeader from '../components/PageHeader.jsx'
 import useContactForm from '../hooks/useContactForm.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const TOTAL = 288
 const MOBILE_TOTAL = 55
@@ -125,6 +126,8 @@ export default function Home() {
   const mobileCanvasRef = useRef(null)
   const finalRef = useRef(null)
   const { status: homeContactStatus, errorMessage: homeContactError, submit: submitHomeContact } = useContactForm()
+
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/' })
 
   useEffect(() => {
     const previousTitle = document.title

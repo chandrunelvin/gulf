@@ -2,8 +2,21 @@ import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import TabbedCollection from '../components/TabbedCollection.jsx'
 import { allProducts, collectionCategories } from '../data/allProducts.js'
+import useDocumentMeta from '../hooks/useDocumentMeta.js'
+import useSeoMeta from '../hooks/useSeoMeta.js'
+
+const seoTitle = 'Full Furniture Collection | Leadcom, Audia, Scab, Nitrocare | GST Concepts'
+const seoDescription = 'Browse the complete GST Concepts catalogue — seating, office, tables, lifestyle, and healthcare furniture from Leadcom, Audia Italia, Scab, and Nitrocare, filtered by category.'
 
 export default function Collection() {
+  useDocumentMeta(seoTitle, seoDescription)
+  useSeoMeta({
+    title: seoTitle,
+    description: seoDescription,
+    path: '/collection',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
+  })
+
   return (
     <SiteLayout active="collection">
       <section

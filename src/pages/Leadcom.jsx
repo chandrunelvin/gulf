@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
+import useSeoMeta from '../hooks/useSeoMeta.js'
 
 const seoTitle = 'Leadcom Auditorium & Cinema Seating Supplier Oman | Muscat'
 const seoDescription = 'GST Concepts supplies Leadcom auditorium, retractable, and cinema seating in Muscat and Oman including a confirmed local install at Cheltenham Muscat.'
@@ -189,6 +190,8 @@ const qaItems = [
 ]
 
 export default function Leadcom() {
+  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/leadcom', image: 'https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg' })
+
   useEffect(() => {
     const previousTitle = document.title
     const metaDescription = document.querySelector('meta[name="description"]')
