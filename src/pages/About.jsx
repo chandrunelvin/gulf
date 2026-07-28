@@ -333,7 +333,7 @@ export default function About() {
       </section>
 
 
-      <section className="about-detail">
+      <section className="about-detail founder-section">
         <div className="container">
           <div className="about-flex founder-flex">
             <div className="about-text reveal">
