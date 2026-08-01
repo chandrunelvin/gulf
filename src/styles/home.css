@@ -861,7 +861,7 @@ nav{
   background:#25D366;
   transition:box-shadow .3s var(--ease), transform .3s var(--ease);
 }
-.whatsapp-float img{width:80px;height:80px;object-fit:cover;display:block;}
+.whatsapp-float img{width:100%;height:100%;object-fit:cover;display:block;}
 .whatsapp-label{
   display:block;white-space:nowrap;
   padding:6px 14px;
