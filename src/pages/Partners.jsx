@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
-import useDocumentMeta from '../hooks/useDocumentMeta.js'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Our Partner Brands | Audia, Scab, Leadcom, Brunonic | GST Concepts'
 const seoDescription = 'GST Concepts partners with Audia Italia, Scab, Leadcom, and Brunonic to bring European auditorium, hospitality, and commercial furniture brands to Oman.'
@@ -14,16 +13,14 @@ const partners = [
 ]
 
 export default function Partners() {
-  useDocumentMeta(seoTitle, seoDescription)
-  useSeoMeta({
-    title: seoTitle,
-    description: seoDescription,
-    path: '/partners',
-    image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80',
-  })
-
   return (
     <SiteLayout active="partners">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        path="/partners"
+        image="https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80"
+      />
       <section
         className="page-hero"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80')" }}

@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Office & Workplace Furniture in Oman: A Guide to Specifying Your Fit-Out | GST Concepts'
 const seoDescription = 'A practical guide to specifying executive desks, workstations, ergonomic seating, storage, reception, and lounge furniture for an office fit-out in Oman.'
@@ -131,81 +130,48 @@ const faqs = [
 ]
 
 export default function BlogOfficeFurnitureOman() {
-  useSeoMeta({
-    title: seoTitle,
-    description: seoDescription,
-    path: '/blog/office-furniture-oman',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
-    type: 'article',
-  })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'blog-article-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          headline: 'Office & Workplace Furniture in Oman: A Practical Guide to Specifying Your Fit-Out',
-          description: seoDescription,
-          datePublished: publishDate,
-          dateModified: publishDate,
-          author: { '@type': 'Organization', name: 'GST Concepts' },
-          publisher: { '@type': 'Organization', name: 'GST Concepts' },
-          mainEntityOfPage: `${window.location.origin}/blog/office-furniture-oman`,
-        },
-      },
-      {
-        id: 'blog-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-          })),
-        },
-      },
-      {
-        id: 'blog-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: `${window.location.origin}/blog` },
-            { '@type': 'ListItem', position: 3, name: 'Office & Workplace Furniture in Oman', item: `${window.location.origin}/blog/office-furniture-oman` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: 'Office & Workplace Furniture in Oman: A Practical Guide to Specifying Your Fit-Out',
+      description: seoDescription,
+      datePublished: publishDate,
+      dateModified: publishDate,
+      author: { '@type': 'Organization', name: 'GST Concepts' },
+      publisher: { '@type': 'Organization', name: 'GST Concepts' },
+      mainEntityOfPage: 'https://www.gstconcepts.om/blog/office-furniture-oman',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.gstconcepts.om/blog' },
+        { '@type': 'ListItem', position: 3, name: 'Office & Workplace Furniture in Oman', item: 'https://www.gstconcepts.om/blog/office-furniture-oman' },
+      ],
+    },
+  ]
 
   return (
     <SiteLayout active="blog">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        path="/blog/office-furniture-oman"
+        image="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80"
+        type="article"
+        jsonLd={jsonLd}
+      />
       <section
         className="page-hero"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80')" }}

@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import { scabCategories, scabProducts } from '../data/scabProducts.js'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Scab Italy Contract Furniture Supplier Oman | GST Concepts'
 const seoDescription = 'GST Concepts supplies S•CAB (Scab Italy) contract and workspace furniture for commercial projects in Muscat and Oman — bulk supply & installation.'
@@ -43,95 +42,59 @@ const qaItems = [
 ]
 
 export default function Scab() {
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/scab' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'scab-org-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman'],
-          brand: {
-            '@type': 'Brand',
-            name: 'Scab Italy',
-            legalName: 'Scab Giardino S.p.a.',
-            foundingDate: '1957',
-            url: 'https://www.s-cab.it/en/',
-            location: { '@type': 'PostalAddress', addressLocality: 'Coccaglio', addressCountry: 'Italy' },
-          },
-        },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman'],
+      brand: {
+        '@type': 'Brand',
+        name: 'Scab Italy',
+        legalName: 'Scab Giardino S.p.a.',
+        foundingDate: '1957',
+        url: 'https://www.s-cab.it/en/',
+        location: { '@type': 'PostalAddress', addressLocality: 'Coccaglio', addressCountry: 'Italy' },
       },
-      {
-        id: 'scab-products-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: 'S•CAB Workspace Collection',
-          category: 'Workplace Furniture Supplier',
-          brand: { '@type': 'Brand', name: 'Scab Italy' },
-          seller: { '@type': 'Organization', name: 'GST Concepts' },
-          areaServed: 'Oman',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'S•CAB Workspace Collection',
+      category: 'Workplace Furniture Supplier',
+      brand: { '@type': 'Brand', name: 'Scab Italy' },
+      seller: { '@type': 'Organization', name: 'GST Concepts' },
+      areaServed: 'Oman',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: qaItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
         },
-      },
-      {
-        id: 'scab-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: qaItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
-            },
-          })),
-        },
-      },
-      {
-        id: 'scab-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
-            { '@type': 'ListItem', position: 3, name: 'Scab Italy', item: `${window.location.origin}/scab` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Partners', item: 'https://www.gstconcepts.om/partners' },
+        { '@type': 'ListItem', position: 3, name: 'Scab Italy', item: 'https://www.gstconcepts.om/scab' },
+      ],
+    },
+  ]
 
   return (
+    <>
+    <Seo title={seoTitle} description={seoDescription} path="/scab" jsonLd={jsonLd} />
     <PartnerPage
       hero={{
         bg: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1600&q=80',
@@ -178,5 +141,6 @@ export default function Scab() {
         items: qaItems,
       }}
     />
+    </>
   )
 }

@@ -7,7 +7,7 @@ import WhatsAppFloat from '../components/WhatsAppFloat.jsx'
 import ProjectSlider from '../components/ProjectSlider.jsx'
 import PageHeader from '../components/PageHeader.jsx'
 import useContactForm from '../hooks/useContactForm.js'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const TOTAL = 288
 const MOBILE_TOTAL = 55
@@ -127,84 +127,46 @@ export default function Home() {
   const finalRef = useRef(null)
   const { status: homeContactStatus, errorMessage: homeContactError, submit: submitHomeContact } = useContactForm()
 
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'home-localbusiness-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          name: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman', 'Singapore'],
-          description: seoDescription,
-        },
-      },
-      {
-        id: 'home-itemlist-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'ItemList',
-          name: 'GST Concepts Brand & Category Pages',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Leadcom Auditorium & Retractable Seating', url: `${window.location.origin}/leadcom` },
-            { '@type': 'ListItem', position: 2, name: 'Audia Italia Seating', url: `${window.location.origin}/audia` },
-            { '@type': 'ListItem', position: 3, name: 'Scab Workplace Furniture', url: `${window.location.origin}/scab` },
-            { '@type': 'ListItem', position: 4, name: 'Brunonic Office Furniture', url: `${window.location.origin}/brunonic` },
-            { '@type': 'ListItem', position: 5, name: 'Nitrocare Hospital Furniture', url: `${window.location.origin}/nitrocare` },
-          ],
-        },
-      },
-      {
-        id: 'home-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: homeFaqs.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: { '@type': 'Answer', text: item.answers.join(' ') },
-          })),
-        },
-      },
-      {
-        id: 'home-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman', 'Singapore'],
+      description: seoDescription,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'GST Concepts Brand & Category Pages',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Leadcom Auditorium & Retractable Seating', url: 'https://www.gstconcepts.om/leadcom' },
+        { '@type': 'ListItem', position: 2, name: 'Audia Italia Seating', url: 'https://www.gstconcepts.om/audia' },
+        { '@type': 'ListItem', position: 3, name: 'Scab Workplace Furniture', url: 'https://www.gstconcepts.om/scab' },
+        { '@type': 'ListItem', position: 4, name: 'Brunonic Office Furniture', url: 'https://www.gstconcepts.om/brunonic' },
+        { '@type': 'ListItem', position: 5, name: 'Nitrocare Hospital Furniture', url: 'https://www.gstconcepts.om/nitrocare' },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: homeFaqs.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answers.join(' ') },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+      ],
+    },
+  ]
 
   useEffect(() => {
     let disposed = false
@@ -387,6 +349,7 @@ export default function Home() {
 
   return (
     <>
+      <Seo title={seoTitle} description={seoDescription} path="/" jsonLd={jsonLd} />
       {/* SCROLL PROGRESS */}
       <div id="progressBar"></div>
 

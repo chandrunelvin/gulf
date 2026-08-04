@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Brunonic Office Furniture Dealer in Oman | GST Concepts'
 const seoDescription = 'GST Concepts - workstations, seating & desks in Muscat & Oman.'
@@ -52,98 +51,62 @@ const qaItems = [
 ]
 
 export default function Brunonic() {
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/brunonic' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'brunonic-org-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman', 'Singapore'],
-          brand: {
-            '@type': 'Brand',
-            name: 'Brunonic',
-            foundingDate: '1982',
-            founder: { '@type': 'Person', name: 'Bruno Nicoletti' },
-            url: 'https://www.brunonicoffice.com',
-          },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman', 'Singapore'],
+      brand: {
+        '@type': 'Brand',
+        name: 'Brunonic',
+        foundingDate: '1982',
+        founder: { '@type': 'Person', name: 'Bruno Nicoletti' },
+        url: 'https://www.brunonicoffice.com',
+      },
+    },
+    [
+      { name: 'Brunonic Workstations', category: 'Workstation Supplier' },
+      { name: 'Brunonic Office & Workplace Furniture', category: 'Workplace Furniture Supplier' },
+      { name: 'Brunonic Ergonomic Seating', category: 'Ergonomic Furniture' },
+    ].map((p) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: p.name,
+      category: p.category,
+      brand: { '@type': 'Brand', name: 'Brunonic' },
+      seller: { '@type': 'Organization', name: 'GST Concepts' },
+      areaServed: 'Oman',
+    })),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: qaItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
         },
-      },
-      {
-        id: 'brunonic-products-schema',
-        content: [
-          { name: 'Brunonic Workstations', category: 'Workstation Supplier' },
-          { name: 'Brunonic Office & Workplace Furniture', category: 'Workplace Furniture Supplier' },
-          { name: 'Brunonic Ergonomic Seating', category: 'Ergonomic Furniture' },
-        ].map((p) => ({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: p.name,
-          category: p.category,
-          brand: { '@type': 'Brand', name: 'Brunonic' },
-          seller: { '@type': 'Organization', name: 'GST Concepts' },
-          areaServed: 'Oman',
-        })),
-      },
-      {
-        id: 'brunonic-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: qaItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
-            },
-          })),
-        },
-      },
-      {
-        id: 'brunonic-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
-            { '@type': 'ListItem', position: 3, name: 'Brunonic', item: `${window.location.origin}/brunonic` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Partners', item: 'https://www.gstconcepts.om/partners' },
+        { '@type': 'ListItem', position: 3, name: 'Brunonic', item: 'https://www.gstconcepts.om/brunonic' },
+      ],
+    },
+  ]
 
   return (
+    <>
+    <Seo title={seoTitle} description={seoDescription} path="/brunonic" jsonLd={jsonLd} />
     <PartnerPage
       hero={{
         bg: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80',
@@ -187,5 +150,6 @@ export default function Brunonic() {
         items: qaItems,
       }}
     />
+    </>
   )
 }

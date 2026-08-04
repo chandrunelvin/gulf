@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import useContactForm from '../hooks/useContactForm.js'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Contact GST Concepts | Furniture Supplier in Muscat, Oman'
 const seoDescription = 'Contact GST Concepts in Muscat, Oman for Audia, Scab, Leadcom, Brunonic and Nitrocare enquiries — auditorium, office, contract and hospital furniture supply.'
@@ -26,77 +25,43 @@ const faqs = [
 export default function Contact() {
   const { status, errorMessage, submit } = useContactForm()
 
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/contact' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'contact-localbusiness-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          name: 'GST Concepts',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'PC 112, PO Box 543',
-            addressLocality: 'Muscat',
-            addressCountry: 'Oman',
-          },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman'],
-        },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: 'GST Concepts',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'PC 112, PO Box 543',
+        addressLocality: 'Muscat',
+        addressCountry: 'Oman',
       },
-      {
-        id: 'contact-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
-          })),
-        },
-      },
-      {
-        id: 'contact-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Contact', item: `${window.location.origin}/contact` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman'],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://www.gstconcepts.om/contact' },
+      ],
+    },
+  ]
 
   return (
     <SiteLayout active="contact">
+      <Seo title={seoTitle} description={seoDescription} path="/contact" jsonLd={jsonLd} />
       <section
         className="page-hero"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80')" }}

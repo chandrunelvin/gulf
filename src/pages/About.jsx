@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SiteLayout from '../components/SiteLayout.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const founder = {
   name: 'Hamed Al Harassi',
@@ -180,95 +180,60 @@ export default function About() {
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/about', image: '/images/teams/hamed-gst.png' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'about-page-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'AboutPage',
-          name: 'About GST Concepts',
-          description: seoDescription,
-          about: {
-            '@type': 'Organization',
-            name: 'GST Concepts',
-            legalName: 'GULF SERVICE AND TRADING',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: 'PC 112, PO Box 543',
-              addressLocality: 'Muscat',
-              addressCountry: 'Oman',
-            },
-            areaServed: ['Oman'],
-            brand: brands.map((brand) => ({
-              '@type': 'Brand',
-              name: brand.name,
-            })),
-          },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'About GST Concepts',
+      description: seoDescription,
+      about: {
+        '@type': 'Organization',
+        name: 'GST Concepts',
+        legalName: 'GULF SERVICE AND TRADING',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'PC 112, PO Box 543',
+          addressLocality: 'Muscat',
+          addressCountry: 'Oman',
         },
+        areaServed: ['Oman'],
+        brand: brands.map((brand) => ({
+          '@type': 'Brand',
+          name: brand.name,
+        })),
       },
-      {
-        id: 'about-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: faqs.map((faq) => ({
-            '@type': 'Question',
-            name: faq.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: faq.answer,
-            },
-          })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
         },
-      },
-      {
-        id: 'about-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Home',
-              item: `${window.location.origin}/`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'About',
-              item: `${window.location.origin}/about`,
-            },
-          ],
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.gstconcepts.om/',
         },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'About',
+          item: 'https://www.gstconcepts.om/about',
+        },
+      ],
+    },
+  ]
 
   useEffect(() => {
     if (!open) return
@@ -279,6 +244,7 @@ export default function About() {
 
   return (
     <SiteLayout active="about">
+      <Seo title={seoTitle} description={seoDescription} path="/about" image="/images/teams/hamed-gst.png" jsonLd={jsonLd} />
       <section
         className="page-hero"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80')" }}

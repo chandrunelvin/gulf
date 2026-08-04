@@ -1,6 +1,5 @@
-import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Leadcom Auditorium & Cinema Seating Supplier Oman | Muscat'
 const seoDescription = 'GST Concepts supplies Leadcom auditorium, retractable, and cinema seating in Muscat and Oman including a confirmed local install at Cheltenham Muscat.'
@@ -190,89 +189,53 @@ const qaItems = [
 ]
 
 export default function Leadcom() {
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/leadcom', image: 'https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'leadcom-org-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman'],
-        },
-      },
-      {
-        id: 'leadcom-products-schema',
-        content: [
-          { name: 'Leadcom Auditorium Seating', category: 'Auditorium Seating' },
-          { name: 'Leadcom Retractable Seating', category: 'Retractable Seating' },
-          { name: 'Leadcom Cinema Seating', category: 'Cinema Seating' },
-          { name: 'Leadcom Workstation & Office Seating', category: 'Workstation Supplier' },
-        ].map((p) => ({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: p.name,
-          category: p.category,
-          brand: { '@type': 'Brand', name: 'Leadcom' },
-          seller: { '@type': 'Organization', name: 'GST Concepts' },
-          areaServed: 'Oman',
-        })),
-      },
-      {
-        id: 'leadcom-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: qaItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: { '@type': 'Answer', text: item.answer },
-          })),
-        },
-      },
-      {
-        id: 'leadcom-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
-            { '@type': 'ListItem', position: 3, name: 'Leadcom', item: `${window.location.origin}/leadcom` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman'],
+    },
+    [
+      { name: 'Leadcom Auditorium Seating', category: 'Auditorium Seating' },
+      { name: 'Leadcom Retractable Seating', category: 'Retractable Seating' },
+      { name: 'Leadcom Cinema Seating', category: 'Cinema Seating' },
+      { name: 'Leadcom Workstation & Office Seating', category: 'Workstation Supplier' },
+    ].map((p) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: p.name,
+      category: p.category,
+      brand: { '@type': 'Brand', name: 'Leadcom' },
+      seller: { '@type': 'Organization', name: 'GST Concepts' },
+      areaServed: 'Oman',
+    })),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: qaItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Partners', item: 'https://www.gstconcepts.om/partners' },
+        { '@type': 'ListItem', position: 3, name: 'Leadcom', item: 'https://www.gstconcepts.om/leadcom' },
+      ],
+    },
+  ]
 
   return (
+    <>
+    <Seo title={seoTitle} description={seoDescription} path="/leadcom" image="https://www.furniconcepts.com/images/leadcom/products/AUDITORIUM-SEATING-CHAIR-A03.jpg" jsonLd={jsonLd} />
     <PartnerPage
       hero={{
         bg: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80',
@@ -336,5 +299,6 @@ export default function Leadcom() {
         items: qaItems,
       }}
     />
+    </>
   )
 }

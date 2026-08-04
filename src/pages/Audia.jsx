@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
 import PartnerPage from '../components/PartnerPage.jsx'
 import ModelViewer from '../components/ModelViewer.jsx'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Audia Italia Seating Supplier in Oman | GST Concepts Muscat'
 const seoDescription = 'Source Audia Italia auditorium, cinema, theatre & stadium seating in Oman through GST Concepts, Muscat.'
@@ -59,94 +58,58 @@ const qaItems = [
 ]
 
 export default function Audia() {
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/audia', image: '/images/audiaitalia/image-5.webp' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'audia-org-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'GST Concepts',
-          alternateName: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman'],
-          brand: {
-            '@type': 'Brand',
-            name: 'Audia Italia',
-            url: 'https://www.audiaitalia.it/en/',
-            location: { '@type': 'PostalAddress', addressLocality: 'Noceto', addressCountry: 'Italy' },
-          },
-        },
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'GST Concepts',
+      alternateName: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman'],
+      brand: {
+        '@type': 'Brand',
+        name: 'Audia Italia',
+        url: 'https://www.audiaitalia.it/en/',
+        location: { '@type': 'PostalAddress', addressLocality: 'Noceto', addressCountry: 'Italy' },
       },
-      {
-        id: 'audia-products-schema',
-        content: [
-          { name: 'Audia Italia Auditorium Seating', category: 'Auditorium Seating' },
-          { name: 'Audia Italia Cinema Seating', category: 'Cinema Seating' },
-        ].map((p) => ({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: p.name,
-          category: p.category,
-          brand: { '@type': 'Brand', name: 'Audia Italia' },
-          seller: { '@type': 'Organization', name: 'GST Concepts' },
-          areaServed: 'Oman',
-        })),
-      },
-      {
-        id: 'audia-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: qaItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: { '@type': 'Answer', text: item.answer },
-          })),
-        },
-      },
-      {
-        id: 'audia-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
-            { '@type': 'ListItem', position: 3, name: 'Audia Italia', item: `${window.location.origin}/audia` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+    },
+    [
+      { name: 'Audia Italia Auditorium Seating', category: 'Auditorium Seating' },
+      { name: 'Audia Italia Cinema Seating', category: 'Cinema Seating' },
+    ].map((p) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: p.name,
+      category: p.category,
+      brand: { '@type': 'Brand', name: 'Audia Italia' },
+      seller: { '@type': 'Organization', name: 'GST Concepts' },
+      areaServed: 'Oman',
+    })),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: qaItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: { '@type': 'Answer', text: item.answer },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Partners', item: 'https://www.gstconcepts.om/partners' },
+        { '@type': 'ListItem', position: 3, name: 'Audia Italia', item: 'https://www.gstconcepts.om/audia' },
+      ],
+    },
+  ]
 
   return (
+    <>
+    <Seo title={seoTitle} description={seoDescription} path="/audia" image="/images/audiaitalia/image-5.webp" jsonLd={jsonLd} />
     <PartnerPage
       hero={{
         bg: '/images/audiaitalia/Audia_Italia_realizzazione_True_Digital_poltrone_auditorium.webp',
@@ -193,5 +156,6 @@ export default function Audia() {
         items: qaItems,
       }}
     />
+    </>
   )
 }

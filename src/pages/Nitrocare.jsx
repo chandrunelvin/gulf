@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PartnerPage from '../components/PartnerPage.jsx'
 import { nitrocareProducts } from '../data/nitrocareProducts.js'
-import useSeoMeta from '../hooks/useSeoMeta.js'
+import Seo from '../components/Seo.jsx'
 
 const seoTitle = 'Nitrocare Hospital Furniture Supplier Oman | GST Concepts'
 const seoDescription = 'GST Concepts supplies Nitrocare hospital beds, examination furniture & patient seating for healthcare facility projects in Muscat and Oman.'
@@ -44,90 +43,54 @@ const qaItems = [
 ]
 
 export default function Nitrocare() {
-  useSeoMeta({ title: seoTitle, description: seoDescription, path: '/nitrocare' })
-
-  useEffect(() => {
-    const previousTitle = document.title
-    const metaDescription = document.querySelector('meta[name="description"]')
-    const previousDescription = metaDescription?.getAttribute('content') || ''
-
-    document.title = seoTitle
-    if (metaDescription) metaDescription.setAttribute('content', seoDescription)
-
-    const schemaScripts = [
-      {
-        id: 'nitrocare-org-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'Organization',
-          name: 'GST Concepts',
-          address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
-          telephone: ['+968 9710 0007', '+968 9806 7601'],
-          email: 'sales@gstconcepts.om',
-          areaServed: ['Oman', 'Singapore'],
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'GST Concepts',
+      address: { '@type': 'PostalAddress', addressLocality: 'Muscat', addressCountry: 'Oman' },
+      telephone: ['+968 9710 0007', '+968 9806 7601'],
+      email: 'sales@gstconcepts.om',
+      areaServed: ['Oman', 'Singapore'],
+    },
+    [
+      { name: 'Nitrocare Hospital Beds' },
+      { name: 'Nitrocare Examination & Treatment Furniture' },
+    ].map((p) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: p.name,
+      category: 'Hospital Furniture Supplier',
+      brand: { '@type': 'Brand', name: 'Nitrocare' },
+      seller: { '@type': 'Organization', name: 'GST Concepts' },
+      areaServed: 'Oman',
+    })),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: qaItems.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
         },
-      },
-      {
-        id: 'nitrocare-products-schema',
-        content: [
-          { name: 'Nitrocare Hospital Beds' },
-          { name: 'Nitrocare Examination & Treatment Furniture' },
-        ].map((p) => ({
-          '@context': 'https://schema.org',
-          '@type': 'Product',
-          name: p.name,
-          category: 'Hospital Furniture Supplier',
-          brand: { '@type': 'Brand', name: 'Nitrocare' },
-          seller: { '@type': 'Organization', name: 'GST Concepts' },
-          areaServed: 'Oman',
-        })),
-      },
-      {
-        id: 'nitrocare-faq-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: qaItems.map((item) => ({
-            '@type': 'Question',
-            name: item.question,
-            acceptedAnswer: {
-              '@type': 'Answer',
-              text: Array.isArray(item.answer) ? item.answer.join('; ') : item.answer,
-            },
-          })),
-        },
-      },
-      {
-        id: 'nitrocare-breadcrumb-schema',
-        content: {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-            { '@type': 'ListItem', position: 2, name: 'Partners', item: `${window.location.origin}/partners` },
-            { '@type': 'ListItem', position: 3, name: 'Nitrocare', item: `${window.location.origin}/nitrocare` },
-          ],
-        },
-      },
-    ]
-
-    schemaScripts.forEach(({ id, content }) => {
-      document.getElementById(id)?.remove()
-      const script = document.createElement('script')
-      script.type = 'application/ld+json'
-      script.id = id
-      script.text = JSON.stringify(content)
-      document.head.appendChild(script)
-    })
-
-    return () => {
-      document.title = previousTitle
-      if (metaDescription) metaDescription.setAttribute('content', previousDescription)
-      schemaScripts.forEach(({ id }) => document.getElementById(id)?.remove())
-    }
-  }, [])
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.gstconcepts.om/' },
+        { '@type': 'ListItem', position: 2, name: 'Partners', item: 'https://www.gstconcepts.om/partners' },
+        { '@type': 'ListItem', position: 3, name: 'Nitrocare', item: 'https://www.gstconcepts.om/nitrocare' },
+      ],
+    },
+  ]
 
   return (
+    <>
+    <Seo title={seoTitle} description={seoDescription} path="/nitrocare" jsonLd={jsonLd} />
     <PartnerPage
       hero={{
         bg: '/images/nitrocare/aesthetic-dermatology.jpg',
@@ -172,5 +135,6 @@ export default function Nitrocare() {
         items: qaItems,
       }}
     />
+    </>
   )
 }
