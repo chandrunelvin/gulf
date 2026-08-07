@@ -1,4 +1,43 @@
+# robots.txt for https://www.gstconcepts.om
+# Last updated: 2026-08-06
+
+# Default rule — applies to all crawlers
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+Disallow: /*?*sessionid=
+Disallow: /*?*sid=
+Disallow: /search?
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /private/
 
+# --- AI / LLM crawlers ---
+# Allow major AI assistants to read and cite your public content.
+# Remove/adjust any of these blocks if you don't want a given bot indexing you.
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# --- Sitemap ---
 Sitemap: https://www.gstconcepts.om/sitemap.xml
