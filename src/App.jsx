@@ -18,6 +18,9 @@ function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => {
     window.scrollTo(0, 0)
+    if (typeof window.gtag === 'function') {
+      window.gtag('config', 'G-S64NYQG0W6', { page_path: pathname })
+    }
   }, [pathname])
   return null
 }
