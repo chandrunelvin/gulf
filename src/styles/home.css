@@ -889,8 +889,9 @@ nav{
   #scrollContainer{display:none;}
   .footer-grid{grid-template-columns:1fr;gap:36px;}
   .footer-bottom{flex-direction:column;text-align:center;}
-  .whatsapp-float{bottom:18px;right:18px;}
-  .whatsapp-float-icon{width:121px;height:121px;}
+  .whatsapp-float{bottom:18px;right:18px;gap:6px;}
+  .whatsapp-float-icon{width:60px;height:60px;}
+  .whatsapp-label{padding:4px 11px;font-size:0.72rem;}
   nav{width:calc(100% - 40px);}
   nav{height:64px;}
   .logo::before{width:211px;height:63px;}
@@ -1031,5 +1032,6 @@ nav{
   .lo-truck{width:240px;}
 
   .whatsapp-float{bottom:14px;right:14px;}
-  .whatsapp-float-icon{width:107px;height:107px;}
+  .whatsapp-float-icon{width:52px;height:52px;}
+  .whatsapp-label{padding:3px 10px;font-size:0.68rem;}
 }
