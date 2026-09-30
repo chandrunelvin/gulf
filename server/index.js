@@ -2,6 +2,9 @@ import 'dotenv/config'
 import express from 'express'
 import cors from 'cors'
 import nodemailer from 'nodemailer'
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const app = express()
 app.use(cors())
@@ -57,6 +60,20 @@ app.post('/api/contact', async (req, res) => {
 })
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }))
+
+// In production (e.g. Hostinger's Node.js hosting) this same server also serves
+// the built React site from dist/, with an SPA fallback so react-router can
+// handle deep links like /brands/xyz on refresh.
+const distDir = [
+  path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'dist'),
+  path.join(process.cwd(), 'dist'),
+].find((dir) => fs.existsSync(path.join(dir, 'index.html')))
+if (!distDir) console.error('dist/index.html not found - did "npm run build" run?')
+if (distDir) app.use(express.static(distDir))
+app.use((req, res, next) => {
+  if (!distDir || req.method !== 'GET' || req.path.startsWith('/api/')) return next()
+  res.sendFile(path.join(distDir, 'index.html'))
+})
 
 const PORT = process.env.PORT || 5174
 app.listen(PORT, () => console.log(`Contact API listening on :${PORT}`))
