@@ -11,7 +11,7 @@
     --gold-lt: #1cc0b7;
     --gold-subtle: rgba(21, 155, 148, 0.1);
     --text: rgba(26, 26, 26, 0.88);
-    --muted: rgba(26, 26, 26, 0.62);
+    --muted: #1a1a1a;
     --line: rgba(21, 155, 148, 0.16);
     --line-strong: rgba(21, 155, 148, 0.28);
     --white-92: rgba(255, 255, 255, 0.92);
@@ -1342,7 +1342,7 @@ section {
 .footer-col li,
 .footer-col a {
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--muted);
 }
 
@@ -1801,7 +1801,7 @@ section {
 
 .faq-answer p {
     font-size: 17px;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--muted);
 }
 
