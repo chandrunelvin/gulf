@@ -160,6 +160,7 @@ nav {
     font-weight: 500;
     letter-spacing: 2.4px;
     text-transform: uppercase;
+    white-space: nowrap;
     color: var(--dark);
     transition: color 0.25s ease, opacity 0.25s ease;
 }
@@ -2510,7 +2511,7 @@ footer {
 .gallery-lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(21, 155, 148, 0.94);
+    background: rgba(18, 20, 22, 0.94);
     display: none;
     align-items: center;
     justify-content: center;
@@ -2531,7 +2532,7 @@ footer {
 
 .gallery-lightbox-image-wrap {
     overflow: hidden;
-    background: var(--gold);
+    background: #fff;
 }
 
 .gallery-lightbox-image {
@@ -3162,7 +3163,7 @@ footer {
     gap: 8px;
     text-decoration: none;
     transition: transform 0.3s var(--ease);
-    animation: waFloat 2.4s ease-in-out infinite;
+    animation: waFloat 1.2s ease-in-out infinite;
 }
 
 .whatsapp-float-icon {

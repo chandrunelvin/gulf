@@ -11,7 +11,7 @@ const DEFAULT_IMAGE = '/images/GST_logo.png'
  * react-helmet-async, which handles tag replacement/cleanup on unmount and route
  * change automatically.
  */
-export default function Seo({ title, description, path, image = DEFAULT_IMAGE, type = 'website', jsonLd }) {
+export default function Seo({ title, description, path, image = DEFAULT_IMAGE, type = 'website', jsonLd, noindex = false }) {
   const url = `${SITE_URL}${path}`
   const absoluteImage = image.startsWith('http') ? image : `${SITE_URL}${image}`
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []
@@ -20,7 +20,10 @@ export default function Seo({ title, description, path, image = DEFAULT_IMAGE, t
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <link rel="canonical" href={url} />
+      {noindex && <meta name="robots" content="noindex, follow" />}
+      {!noindex && <link rel="canonical" href={url} />}
+      {!noindex && <link rel="alternate" hrefLang="en" href={url} />}
+      {!noindex && <link rel="alternate" hrefLang="x-default" href={url} />}
 
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:type" content={type} />
