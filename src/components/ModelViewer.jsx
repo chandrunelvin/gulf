@@ -18,8 +18,33 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
     let rafId
     let disposed = false
     let onResize
+    let visible = false
+    let tick = null
 
-    ;(async () => {
+    // Only render while on screen — several viewers spinning at once (home page
+    // has five) otherwise keep the GPU busy and make the page janky on phones.
+    const startLoop = () => {
+      if (tick && visible && !rafId && !disposed) rafId = requestAnimationFrame(tick)
+    }
+    const visibilityIO = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+      startLoop()
+    })
+    visibilityIO.observe(container)
+
+    // Defer downloading three.js and the model until the viewer is close to the
+    // viewport, so it doesn't compete with above-the-fold content on load.
+    const lazyIO = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        lazyIO.disconnect()
+        init()
+      },
+      { rootMargin: '300px 0px' }
+    )
+    lazyIO.observe(container)
+
+    const init = async () => {
       try {
         // Build the specifiers at runtime so Vite/Rollup don't try to resolve or
         // bundle these vendored ES modules — the browser fetches them from /public.
@@ -35,7 +60,7 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
         const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100)
         camera.position.set(2.2, 1.5, 2.4)
 
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' })
         renderer.setSize(w, h)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio))
         renderer.toneMapping = THREE.ACESFilmicToneMapping
@@ -54,8 +79,37 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
         scene.add(p1)
 
         const target = new THREE.Vector3(0, 0.6, 0)
+        const viewDir = camera.position.clone().normalize()
         camera.lookAt(target)
+        // The model spins inside this pivot so it turns about its own centre
+        // instead of orbiting around the glTF origin.
         let model = null
+        let fitPoints = []
+
+        // Pull the camera back along its viewing angle just far enough that the
+        // model stays fully in frame at every point of its spin, for whatever
+        // aspect ratio the container has (phone cards are wide and short).
+        const fitCamera = () => {
+          if (!fitPoints.length) return
+          const p = new THREE.Vector3()
+          const fits = (dist) => {
+            camera.position.copy(viewDir).multiplyScalar(dist).add(target)
+            camera.lookAt(target)
+            camera.updateMatrixWorld(true)
+            return fitPoints.every((pt) => {
+              p.copy(pt).project(camera)
+              return p.z < 1 && Math.abs(p.x) <= 0.9 && Math.abs(p.y) <= 0.9
+            })
+          }
+          let lo = 0.3
+          let hi = 30
+          for (let i = 0; i < 24; i++) {
+            const mid = (lo + hi) / 2
+            if (fits(mid)) hi = mid
+            else lo = mid
+          }
+          fits(hi)
+        }
 
         const gltfLoader = new GLTFLoader()
         const draco = new DRACOLoader()
@@ -66,20 +120,37 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
           encodeURI(glb),
           (gltf) => {
             if (disposed) return
-            model = gltf.scene
-            model.updateMatrixWorld(true)
-            let box = new THREE.Box3().setFromObject(model)
+            const inner = gltf.scene
+            inner.updateMatrixWorld(true)
+            let box = new THREE.Box3().setFromObject(inner)
             const size = box.getSize(new THREE.Vector3())
             const maxDim = Math.max(size.x, size.y, size.z) || 1
-            model.scale.setScalar(1.7 / maxDim)
-            box = new THREE.Box3().setFromObject(model)
+            inner.scale.setScalar(1.7 / maxDim)
+            inner.updateMatrixWorld(true)
+            box = new THREE.Box3().setFromObject(inner)
             const c = box.getCenter(new THREE.Vector3())
-            model.position.x -= c.x
-            model.position.z -= c.z
-            model.position.y -= box.min.y
-            target.set(0, (box.max.y - box.min.y) * 0.5, 0)
-            camera.lookAt(target)
+            inner.position.x -= c.x
+            inner.position.z -= c.z
+            inner.position.y -= box.min.y
+            model = new THREE.Group()
+            model.add(inner)
             scene.add(model)
+
+            // Box corners swept through a full turn — everything the spin can show.
+            const hx = (box.max.x - box.min.x) / 2
+            const hz = (box.max.z - box.min.z) / 2
+            const height = box.max.y - box.min.y
+            target.set(0, height * 0.5, 0)
+            fitPoints = []
+            for (let a = 0; a < 24; a++) {
+              const ang = (a / 24) * Math.PI * 2
+              const cos = Math.cos(ang)
+              const sin = Math.sin(ang)
+              for (const x of [-hx, hx]) for (const z of [-hz, hz]) for (const y of [0, height]) {
+                fitPoints.push(new THREE.Vector3(x * cos + z * sin, y, -x * sin + z * cos))
+              }
+            }
+            fitCamera()
             setStatus('')
           },
           undefined,
@@ -93,12 +164,14 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
           }
         )
 
-        const animate = () => {
-          rafId = requestAnimationFrame(animate)
+        tick = () => {
+          rafId = null
+          if (!visible || disposed) return
           if (model) model.rotation.y += 0.004
           renderer.render(scene, camera)
+          rafId = requestAnimationFrame(tick)
         }
-        animate()
+        startLoop()
 
         onResize = () => {
           w = container.clientWidth
@@ -107,16 +180,19 @@ export default function ModelViewer({ glb, className = 'model-3d', maxPixelRatio
           camera.aspect = w / h
           camera.updateProjectionMatrix()
           renderer.setSize(w, h)
+          fitCamera()
         }
         window.addEventListener('resize', onResize)
       } catch (err) {
         console.warn('three.js failed to load:', err)
         setStatus('3D viewer unavailable')
       }
-    })()
+    }
 
     return () => {
       disposed = true
+      lazyIO.disconnect()
+      visibilityIO.disconnect()
       if (rafId) cancelAnimationFrame(rafId)
       if (onResize) window.removeEventListener('resize', onResize)
       if (renderer) {

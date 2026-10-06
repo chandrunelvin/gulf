@@ -3236,13 +3236,13 @@ footer {
     }
 
     .whatsapp-float-icon {
-        width: 60px;
-        height: 60px;
+        width: 70px;
+        height: 70px;
     }
 
     .whatsapp-label {
-        padding: 4px 11px;
-        font-size: 0.72rem;
+        padding: 5px 13px;
+        font-size: 0.8rem;
     }
 }
 
@@ -3253,12 +3253,12 @@ footer {
     }
 
     .whatsapp-float-icon {
-        width: 52px;
-        height: 52px;
+        width: 64px;
+        height: 64px;
     }
 
     .whatsapp-label {
-        padding: 3px 10px;
-        font-size: 0.68rem;
+        padding: 4px 12px;
+        font-size: 0.76rem;
     }
 }

@@ -190,13 +190,17 @@ export default function Home() {
     let currentFrame = 0
     let rafPending = false
 
+    const isReady = (img) => img && img.complete && img.naturalWidth
     const drawFrame = (idx) => {
-      const img = frames[Math.max(0, Math.min(idx, total - 1))]
-      if (!img || !img.complete || !img.naturalWidth) {
-        // Frame missing/failed to load — keep whatever is already painted
-        // rather than flashing the canvas to blank white.
-        return
+      idx = Math.max(0, Math.min(idx, total - 1))
+      // Frames stream in progressively, so fall back to the nearest frame that has
+      // already loaded. If none has, keep whatever is painted rather than blanking.
+      let img = null
+      for (let d = 0; d < total && !img; d++) {
+        if (isReady(frames[idx - d])) img = frames[idx - d]
+        else if (isReady(frames[idx + d])) img = frames[idx + d]
       }
+      if (!img) return
       const s = Math.max(W / img.naturalWidth, H / img.naturalHeight)
       const w = img.naturalWidth * s
       const h = img.naturalHeight * s
@@ -213,35 +217,61 @@ export default function Home() {
     window.addEventListener('resize', onResize)
 
     // ---------- LOADER ----------
+    // Load frames coarse-to-fine (every 8th frame first, then fill the gaps) and
+    // hide the loader once that first coarse pass is in, instead of blocking on
+    // every frame. Scrubbing works immediately; detail fills in behind it.
     const loader = document.getElementById('loader')
-    let loaded = 0
     document.body.style.overflow = 'hidden'
 
-    for (let i = 1; i <= total; i++) {
+    const STRIDE = 8
+    const order = []
+    const queued = new Set()
+    for (let step = STRIDE; step >= 1; step /= 2) {
+      for (let i = 0; i < total; i += step) {
+        if (!queued.has(i)) { queued.add(i); order.push(i) }
+      }
+    }
+    const firstPass = Math.ceil(total / STRIDE)
+
+    let loaderHidden = false
+    const hideLoader = () => {
+      if (loaderHidden || disposed) return
+      loaderHidden = true
+      drawFrame(currentFrame)
+      if (!loader) { document.body.style.overflow = 'auto'; return }
+      loader.style.transition = 'opacity 0.5s ease'
+      loader.style.opacity = '0'
+      setTimeout(() => {
+        loader.style.display = 'none'
+        document.body.style.overflow = 'auto'
+      }, 500)
+    }
+
+    // A few parallel requests at a time so the earliest frames aren't starved.
+    const CONCURRENCY = 6
+    let next = 0
+    let settled = 0
+    const loadNext = () => {
+      if (disposed || next >= order.length) return
+      const idx = order[next++]
       const img = new Image()
-      const n = String(i).padStart(3, '0')
+      img.decoding = 'async'
+      const n = String(idx + 1).padStart(3, '0')
       img.src = isMobile
-        ? `/mobile-hero-scroling/ezgif-frame-${n}.png`
+        ? `/mobile-hero-scroling/ezgif-frame-${n}.webp`
         : `/gst-concepts-image/ezgif-frame-${n}.jpg`
       const done = () => {
         if (disposed) return
-        frames[i - 1] = img
-        loaded++
-        if (loaded === total && loader) {
-          setTimeout(() => {
-            loader.style.transition = 'opacity 1s ease'
-            loader.style.opacity = '0'
-            setTimeout(() => {
-              loader.style.display = 'none'
-              document.body.style.overflow = 'auto'
-              drawFrame(0)
-            }, 1000)
-          }, 400)
-        }
+        frames[idx] = img
+        settled++
+        if (loaderHidden && Math.abs(idx - currentFrame) < STRIDE) drawFrame(currentFrame)
+        if (settled >= firstPass) hideLoader()
+        loadNext()
       }
       img.onload = done
       img.onerror = done
     }
+    for (let k = 0; k < CONCURRENCY; k++) loadNext()
 
     // ---------- OVERLAYS (desktop only — mobile has no zone overlays) ----------
     const updateOverlays = (prog) => {

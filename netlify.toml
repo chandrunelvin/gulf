@@ -13,3 +13,26 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Cache heavy static media in the browser so repeat visits don't re-download the
+# hero frame sequences, 3D models and three.js. Not fingerprinted, so keep it to a
+# day and revalidate in the background afterwards.
+[[headers]]
+  for = "/mobile-hero-scroling/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/gst-concepts-image/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, stale-while-revalidate=2592000"
