@@ -56,6 +56,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.gstconcepts.om/blog/venue-seating-oman</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.gstconcepts.om/contact</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

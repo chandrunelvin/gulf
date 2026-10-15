@@ -13,6 +13,7 @@ import Brunonic from './pages/Brunonic.jsx'
 import Nitrocare from './pages/Nitrocare.jsx'
 import Blog from './pages/Blog.jsx'
 import BlogOfficeFurnitureOman from './pages/BlogOfficeFurnitureOman.jsx'
+import BlogVenueSeatingOman from './pages/BlogVenueSeatingOman.jsx'
 import NotFound from './pages/NotFound.jsx'
 
 function ScrollToTop() {
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/nitrocare" element={<Nitrocare />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/office-furniture-oman" element={<BlogOfficeFurnitureOman />} />
+        <Route path="/blog/venue-seating-oman" element={<BlogVenueSeatingOman />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
